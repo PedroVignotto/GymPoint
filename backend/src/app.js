@@ -1,5 +1,6 @@
 import express from 'express';
 import 'express-async-errors';
+import cors from 'cors';
 import Youch from 'youch';
 import routes from './routes';
 
@@ -15,6 +16,7 @@ class App {
   }
 
   middleware() {
+    this.server.use(cors());
     this.server.use(express.json());
   }
 
