@@ -1,12 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { MdExitToApp } from 'react-icons/md';
 
 import { signOut } from '~/store/modules/auth/actions';
 
-import logo from '~/assets/logo.png';
+import logoHeader from '~/assets/logoHeader.svg';
 
-import { Container, Content, Profile } from './styles';
+import { Container, Content } from './styles';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -19,17 +20,17 @@ export default function Header() {
     <Container>
       <Content>
         <nav>
-          <img src={logo} alt="GymPoint" />
-          <Link to="/dashboard">DASHBOARD</Link>
+          <img src={logoHeader} alt="GymPoint" />
+          <Link to="/dashboard">Students</Link>
+          <Link to="/dashboard">Plans</Link>
+          <Link to="/dashboard">Enrollments</Link>
+          <Link to="/dashboard">Requests for assistance</Link>
         </nav>
 
-        <aside>
-          <Profile>
-            <button type="button" onClick={handleSignOut}>
-              Sair
-            </button>
-          </Profile>
-        </aside>
+        <button type="button" onClick={handleSignOut}>
+          <MdExitToApp size={24} color="#FFF" />
+          Sair
+        </button>
       </Content>
     </Container>
   );

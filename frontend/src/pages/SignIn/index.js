@@ -6,13 +6,13 @@ import * as Yup from 'yup';
 import { signInRequest } from '~/store/modules/auth/actions';
 
 import logo from '~/assets/logo.svg';
-import { Wrapper, Content } from './styles';
+import { Container, Content } from './styles';
 
 const schema = Yup.object().shape({
   email: Yup.string()
-    .email('Insira um e-mail válido')
-    .required('O e-mail é obrigatório'),
-  password: Yup.string().required('A senha é obrigatória'),
+    .email('Invalid e-mail address')
+    .required('E-mail is required'),
+  password: Yup.string().required('Password is required'),
 });
 
 export default function SignIn() {
@@ -24,14 +24,14 @@ export default function SignIn() {
   }
 
   return (
-    <Wrapper>
+    <Container>
       <Content>
         <img src={logo} alt="GymPoint" />
 
         <Form schema={schema} onSubmit={handleSubmit}>
-          <span>Your e-mail</span>
+          <strong>Your e-mail</strong>
           <Input name="email" placeholder="exemple@email.com" />
-          <span>Your password</span>
+          <strong>Your password</strong>
           <Input name="password" type="password" placeholder="*************" />
 
           <button type="submit">
@@ -39,6 +39,6 @@ export default function SignIn() {
           </button>
         </Form>
       </Content>
-    </Wrapper>
+    </Container>
   );
 }

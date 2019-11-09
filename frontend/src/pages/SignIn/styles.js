@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
   height: 100%;
   background: #ee4d64;
   display: flex;
@@ -29,14 +29,17 @@ export const Content = styled.div`
     margin-top: 30px;
 
     span {
+      color: #fb6f91;
+      align-self: flex-start;
+      margin: 0 0 10px;
+      font-weight: bold;
+    }
+
+    strong {
       align-self: flex-start;
       color: #444;
       margin-bottom: 8px;
       font-weight: 500;
-    }
-
-    input + span {
-      margin-top: 5px;
     }
 
     input {
@@ -50,6 +53,10 @@ export const Content = styled.div`
 
       &::placeholder {
         color: #999;
+      }
+
+      + strong {
+        margin-top: 5px;
       }
     }
 
