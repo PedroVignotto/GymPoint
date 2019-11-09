@@ -4,6 +4,7 @@ import Route from './Route';
 
 import SignIn from '~/pages/SignIn';
 import Students from '~/pages/Students';
+import Error404 from '~/pages/_Error404';
 
 export default function Routes() {
   return (
@@ -11,6 +12,7 @@ export default function Routes() {
       <Route path="/" exact component={SignIn} />
 
       <Route path="/students" exact component={Students} isPrivate />
+      <Route path="/*" component={Error404} isPrivate />
     </Switch>
   );
 }
