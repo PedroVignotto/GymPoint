@@ -21,15 +21,15 @@ export default function Header() {
       <Content>
         <nav>
           <img src={logoHeader} alt="GymPoint" />
-          <Link to="/dashboard">Students</Link>
-          <Link to="/dashboard">Plans</Link>
-          <Link to="/dashboard">Enrollments</Link>
-          <Link to="/dashboard">Requests for assistance</Link>
+          <Link to="/students">Students</Link>
+          <Link to="/students">Plans</Link>
+          <Link to="/students">Enrollments</Link>
+          <Link to="/students">Requests for assistance</Link>
         </nav>
 
         <button type="button" onClick={handleSignOut}>
           <MdExitToApp size={24} color="#FFF" />
-          Sair
+          Sign out
         </button>
       </Content>
     </Container>
