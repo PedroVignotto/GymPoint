@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { signOut } from '~/store/modules/auth/actions';
 
-import logo from '~/assets/logo-purple.svg';
+import logo from '~/assets/logo.png';
 
 import { Container, Content, Profile } from './styles';
 
@@ -19,7 +19,7 @@ export default function Header() {
     <Container>
       <Content>
         <nav>
-          <img src={logo} alt="GoBarber" />
+          <img src={logo} alt="GymPoint" />
           <Link to="/dashboard">DASHBOARD</Link>
         </nav>
 

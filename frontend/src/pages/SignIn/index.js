@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { signInRequest } from '~/store/modules/auth/actions';
 
 import logo from '~/assets/logo.svg';
+import { Wrapper, Content } from './styles';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -23,15 +24,21 @@ export default function SignIn() {
   }
 
   return (
-    <>
-      <img src={logo} alt="GoBarber" />
+    <Wrapper>
+      <Content>
+        <img src={logo} alt="GymPoint" />
 
-      <Form schema={schema} onSubmit={handleSubmit}>
-        <Input name="email" placeholder="Seu e-mail" />
-        <Input name="password" type="password" placeholder="Sua senha" />
+        <Form schema={schema} onSubmit={handleSubmit}>
+          <span>Your e-mail</span>
+          <Input name="email" placeholder="exemple@email.com" />
+          <span>Your password</span>
+          <Input name="password" type="password" placeholder="*************" />
 
-        <button type="submit">{loading ? 'Carregando...' : 'Acessar'}</button>
-      </Form>
-    </>
+          <button type="submit">
+            {loading ? 'Loading...' : 'Login to the system'}
+          </button>
+        </Form>
+      </Content>
+    </Wrapper>
   );
 }
