@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
@@ -23,27 +22,6 @@ export const Top = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-
-    > button {
-      display: flex;
-      align-items: center;
-      background: #ee4d64;
-      border: none;
-      border-radius: 4px;
-      color: #fff;
-      font-weight: 500;
-      padding: 4px 16px;
-      text-transform: uppercase;
-      transition: background 0.2s;
-
-      &:hover {
-        background: ${darken(0.05, '#ee4d64')};
-      }
-
-      svg {
-        margin-right: 5px;
-      }
-    }
 
     span {
       display: flex;

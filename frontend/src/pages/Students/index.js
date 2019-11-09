@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { MdAdd, MdSearch, MdDone } from 'react-icons/md';
 import api from '~/services/api';
 
+import { MainButton } from '~/components/Button';
+
 import { Container, Top, List } from './styles';
 
 export default function Students() {
@@ -22,10 +24,9 @@ export default function Students() {
       <Top>
         <strong>Managing students</strong>
         <div>
-          <button type="button">
-            <MdAdd size={24} color="#fff" />
+          <MainButton type="button" Icon={MdAdd} iconColor="#fff">
             Register
-          </button>
+          </MainButton>
           <span>
             <button type="button">
               <MdSearch size={24} color="#999" />
