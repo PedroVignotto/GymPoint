@@ -13,6 +13,11 @@ export const Container = styled.button`
   text-transform: uppercase;
   transition: background 0.2s;
 
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
   &:hover {
     background: ${darken(0.05, '#ee4d64')};
   }
@@ -28,14 +33,19 @@ export const Wrapper = styled.button`
   padding: 4px 16px;
   border: none;
   border-radius: 4px;
-  background: #ddd;
+  background: ${darken(0.05, '#ddd')};
   color: #fff;
   font-weight: 500;
   text-transform: uppercase;
   transition: background 0.2s;
 
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
   &:hover {
-    background: ${darken(0.05, '#ddd')};
+    background: ${darken(0.08, '#ddd')};
   }
 
   svg {

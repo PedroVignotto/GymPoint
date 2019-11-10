@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MdAdd, MdSearch, MdDone } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import api from '~/services/api';
 
 import { MainButton } from '~/components/Button';
@@ -25,7 +26,7 @@ export default function Students() {
         <strong>Managing students</strong>
         <div>
           <MainButton type="button" Icon={MdAdd} iconColor="#fff">
-            Register
+            <Link to="/students/register">Register</Link>
           </MainButton>
           <span>
             <button type="button">
