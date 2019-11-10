@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  height: 80%;
+export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,5 +8,6 @@ export const Container = styled.div`
   img {
     width: 500px;
     height: 300px;
+    margin-top: 10%;
   }
 `;

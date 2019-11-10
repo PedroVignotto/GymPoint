@@ -1,12 +1,12 @@
 import React from 'react';
 
 import error from '~/assets/404.svg';
-import { Container } from './styles';
+import { Wrapper } from './styles';
 
 export default function _Error404() {
   return (
-    <Container>
+    <Wrapper>
       <img src={error} alt="404" />
-    </Container>
+    </Wrapper>
   );
 }
