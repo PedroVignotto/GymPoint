@@ -21,7 +21,7 @@ class StudentController {
 
     const { name, email, age, height, weight } = students;
 
-    return res.json({name, email, age, height, weight});
+    return res.json({ name, email, age, height, weight });
   }
 
   async store(req, res) {
@@ -96,6 +96,20 @@ class StudentController {
     const { name, age, weight, height } = await student.update(req.body);
 
     return res.json({ id, name, email, age, weight, height });
+  }
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    const student = await Student.findByPk(id);
+
+    if (!student) {
+      return res.status(400).json({ error: 'Student does not exists' });
+    }
+
+    await Student.destroy({ where: { id } });
+
+    return res.status(200).json({ success: 'Student has been deleted' });
   }
 }
 
