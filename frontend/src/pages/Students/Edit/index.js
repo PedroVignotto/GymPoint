@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 import { MdDone, MdArrowBack } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -100,3 +101,7 @@ export default function Edit({ match }) {
     </Container>
   );
 }
+
+Edit.propTypes = {
+  match: PropTypes.number.isRequired,
+};
