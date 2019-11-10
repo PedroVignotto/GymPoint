@@ -7,7 +7,7 @@ import { MainButton } from '~/components/Button';
 
 import { Top, List, Active } from './styles';
 
-export default function Students() {
+export default function Enrollments() {
   const [enrollments, setEnrollments] = useState([]);
 
   useEffect(() => {
@@ -19,8 +19,6 @@ export default function Students() {
         startDate: format(parseISO(enrollment.start_date), 'MMMM dd, yyyy'),
         endDate: format(parseISO(enrollment.end_date), 'MMMM dd, yyyy'),
       }));
-
-      // startDate =
 
       setEnrollments(data);
     }

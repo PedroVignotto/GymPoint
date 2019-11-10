@@ -75,26 +75,21 @@ export const List = styled.table`
 
   button {
     font-size: 15px;
-    color: #4d85ee;
+    color: ${props => (props.answer ? '#42cb59' : '#4d85ee')};
     font-weight: 500;
     background: none;
     border: 0;
     text-align: right;
-
-    + button {
-      color: #de3b3b;
-      margin-left: 24px;
-    }
   }
 `;
 
-export const Active = styled.span`
+export const Answer = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 20px;
   height: 20px;
-  background: ${props => (props.active ? '#42cb59' : '#ddd')};
+  background: ${props => (props.answer ? '#42cb59' : '#ddd')};
   border-radius: 50%;
   margin: 0 auto;
 `;

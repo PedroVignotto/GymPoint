@@ -24,7 +24,7 @@ export default function Header() {
           <Link to="/students">Students</Link>
           <Link to="/plans">Plans</Link>
           <Link to="/enrollments">Enrollments</Link>
-          <Link to="/students">Requests for assistance</Link>
+          <Link to="/assistances">Requests for assistance</Link>
         </nav>
 
         <button type="button" onClick={handleSignOut}>

@@ -7,7 +7,7 @@ import { MainButton } from '~/components/Button';
 
 import { Top, List } from './styles';
 
-export default function Students() {
+export default function Plans() {
   const [plans, setPlans] = useState([]);
 
   useEffect(() => {

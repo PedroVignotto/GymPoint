@@ -6,6 +6,7 @@ import SignIn from '~/pages/SignIn';
 import Students from '~/pages/Students';
 import Plans from '~/pages/Plans';
 import Enrollments from '~/pages/Enrollments';
+import Assistances from '~/pages/Assistances';
 import Error404 from '~/pages/_Error404';
 
 export default function Routes() {
@@ -16,6 +17,7 @@ export default function Routes() {
       <Route path="/students" exact component={Students} isPrivate />
       <Route path="/plans" component={Plans} isPrivate />
       <Route path="/enrollments" component={Enrollments} isPrivate />
+      <Route path="/assistances" component={Assistances} isPrivate />
       <Route path="/*" component={Error404} isPrivate />
     </Switch>
   );
