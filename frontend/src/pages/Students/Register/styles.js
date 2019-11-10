@@ -13,7 +13,7 @@ export const Top = styled.div`
   justify-content: space-between;
   padding: 30px 0;
 
-  strong {
+  > strong {
     font-size: 24px;
     font-weight: bold;
     color: #444;
@@ -33,20 +33,28 @@ export const Top = styled.div`
 export const UnForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  background: #fff;
-  padding: 30px 40px;
   border-radius: 4px;
-
-  strong {
-    align-self: flex-start;
-    color: #444;
-    margin-bottom: 8px;
-    font-weight: 500;
-  }
 
   aside {
     display: flex;
     flex-direction: row;
+  }
+
+  span {
+    color: #fb6f91;
+    align-self: flex-start;
+    font-weight: bold;
+  }
+`;
+
+export const StyleForm = styled.section`
+  background: #fff;
+  padding: 30px 40px;
+
+  strong {
+    align-self: flex-start;
+    color: #444;
+    font-weight: 500;
   }
 `;
 
@@ -58,22 +66,14 @@ export const UnInput = styled(Input)`
   width: 100%;
   padding: 0 15px;
   color: #999;
-  margin: 0 0 10px;
+  margin: 8px 0 10px;
 
   &::placeholder {
     color: #999;
   }
-
-  + strong {
-    margin-top: 5px;
-  }
 `;
 
 export const Label = styled.div`
-  input {
-    margin-top: 8px;
-  }
-
   + div {
     margin-left: 24px;
   }
