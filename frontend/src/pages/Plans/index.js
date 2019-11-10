@@ -5,7 +5,7 @@ import api from '~/services/api';
 import { formatPrice } from '~/util/format';
 import { MainButton } from '~/components/Button';
 
-import { Container, Top, List } from './styles';
+import { Top, List } from './styles';
 
 export default function Students() {
   const [plans, setPlans] = useState([]);
@@ -26,7 +26,7 @@ export default function Students() {
   }, []);
 
   return (
-    <Container>
+    <>
       <Top>
         <strong>Managing plans</strong>
         <MainButton type="button" Icon={MdAdd} iconColor="#fff">
@@ -58,6 +58,6 @@ export default function Students() {
           </tbody>
         ))}
       </List>
-    </Container>
+    </>
   );
 }

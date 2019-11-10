@@ -4,7 +4,7 @@ import api from '~/services/api';
 
 import { MainButton } from '~/components/Button';
 
-import { Container, Top, List } from './styles';
+import { Top, List } from './styles';
 
 export default function Students() {
   const [students, setStudents] = useState([]);
@@ -20,7 +20,7 @@ export default function Students() {
   }, []);
 
   return (
-    <Container>
+    <>
       <Top>
         <strong>Managing students</strong>
         <div>
@@ -62,6 +62,6 @@ export default function Students() {
           </tbody>
         ))}
       </List>
-    </Container>
+    </>
   );
 }
