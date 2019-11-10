@@ -48,18 +48,20 @@ export default function Students() {
         </thead>
         {students.map(student => (
           <tbody>
-            <td>{student.name}</td>
-            <td>{student.email}</td>
-            <td>{student.age}</td>
-            <td>
-              <span>
-                <MdDone size={16} color="#fff" />
-              </span>
-            </td>
-            <td>
-              <button type="button">edit</button>
-              <button type="button">delete</button>
-            </td>
+            <tr>
+              <td>{student.name}</td>
+              <td>{student.email}</td>
+              <td>{student.age}</td>
+              <td>
+                <span>
+                  <MdDone size={16} color="#fff" />
+                </span>
+              </td>
+              <td>
+                <button type="button">edit</button>
+                <button type="button">delete</button>
+              </td>
+            </tr>
           </tbody>
         ))}
       </List>

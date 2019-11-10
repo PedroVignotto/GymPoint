@@ -24,6 +24,7 @@ export const Top = styled.div`
       border-radius: 4px;
       margin-left: 16px;
       padding: 0 10px 0 5px;
+      background: #fff;
 
       button {
         display: flex;
@@ -49,6 +50,7 @@ export const Top = styled.div`
 export const List = styled.table`
   width: 100%;
   padding: 10px 30px 10px 50px;
+  background: #fff;
 
   thead th {
     color: #444;
