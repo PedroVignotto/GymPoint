@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 import { MdAdd, MdSearch, MdDone } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
@@ -19,10 +21,30 @@ export default function Students() {
     }
 
     loadStudents();
-  }, []);
+  }, [students]);
 
   function handleEdit(id) {
     history.push(`/students/edit/${id}`);
+  }
+
+  async function handleDelete(id) {
+    try {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        showCancelButton: true,
+        confirmButtonColor: '#42cb59',
+        cancelButtonColor: '#ee4d64',
+        confirmButtonText: 'Yes, delete it!',
+      }).then(result => {
+        if (result.value) {
+          api.delete(`students/${id}`);
+          toast.success('Student successfully deleted');
+        }
+      });
+    } catch (err) {
+      toast.error('Something went wrong try again');
+    }
   }
 
   return (
@@ -66,7 +88,9 @@ export default function Students() {
                 <button type="button" onClick={() => handleEdit(student.id)}>
                   edit
                 </button>
-                <button type="button">delete</button>
+                <button type="button" onClick={() => handleDelete(student.id)}>
+                  delete
+                </button>
               </td>
             </tr>
           </tbody>
