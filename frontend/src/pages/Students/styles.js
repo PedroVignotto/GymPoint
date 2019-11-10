@@ -48,7 +48,7 @@ export const Top = styled.div`
 
 export const List = styled.table`
   width: 100%;
-  padding: 10px 0px 10px 50px;
+  padding: 10px 30px 10px 50px;
 
   thead th {
     color: #444;
@@ -70,6 +70,10 @@ export const List = styled.table`
 
     &:nth-last-child(-n + 3) {
       text-align: center;
+    }
+
+    &:last-child {
+      text-align: right;
     }
   }
 
