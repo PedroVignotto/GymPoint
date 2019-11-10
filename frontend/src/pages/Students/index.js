@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { MdAdd, MdSearch, MdDone } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import api from '~/services/api';
 
+import history from '~/services/history';
+import api from '~/services/api';
 import { MainButton } from '~/components/Button';
 
 import { Top, List } from './styles';
@@ -19,6 +20,10 @@ export default function Students() {
 
     loadStudents();
   }, []);
+
+  function handleEdit(id) {
+    history.push(`/students/edit/${id}`);
+  }
 
   return (
     <>
@@ -58,7 +63,9 @@ export default function Students() {
                 </span>
               </td>
               <td>
-                <button type="button">edit</button>
+                <button type="button" onClick={() => handleEdit(student.id)}>
+                  edit
+                </button>
                 <button type="button">delete</button>
               </td>
             </tr>

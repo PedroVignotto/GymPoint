@@ -12,6 +12,13 @@ export function RegisterSuccess(student) {
   };
 }
 
+export function EditStudent(student) {
+  return {
+    type: '@student/EDIT_STUDENT',
+    payload: { student },
+  };
+}
+
 export function Failure() {
   return {
     type: '@student/FAILURE',

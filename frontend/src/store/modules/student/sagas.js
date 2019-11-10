@@ -27,4 +27,9 @@ export function* register({ payload }) {
   }
 }
 
-export default all([takeLatest('@student/REGISTER_REQUEST', register)]);
+export function* edit({ payload }) {}
+
+export default all([
+  takeLatest('@student/REGISTER_REQUEST', register),
+  takeLatest('@student/EDIT_STUDENT', edit),
+]);
