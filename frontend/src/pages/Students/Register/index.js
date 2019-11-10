@@ -1,10 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { MdDone, MdArrowBack } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 
-import { RegisterRequest } from '~/store/modules/student/actions';
+import api from '~/services/api';
+import history from '~/services/history';
 import { MainButton, BackButton } from '~/components/Button';
 import { Container, Top, UnForm, UnInput, Label, StyleForm } from './styles';
 
@@ -26,10 +27,21 @@ const schema = Yup.object().shape({
 });
 
 export default function Register() {
-  const dispatch = useDispatch();
+  async function handleSubmit({ name, email, age, weight, height }) {
+    try {
+      await api.post('students', {
+        name,
+        email,
+        age,
+        weight,
+        height,
+      });
 
-  function handleSubmit({ name, email, age, weight, height }) {
-    dispatch(RegisterRequest(name, email, age, weight, height));
+      toast.success('User successfully added');
+      history.push('/students');
+    } catch (err) {
+      toast.error('Something went wrong try again');
+    }
   }
 
   return (
