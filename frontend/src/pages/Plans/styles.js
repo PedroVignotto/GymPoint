@@ -21,7 +21,7 @@ export const Top = styled.div`
 
 export const List = styled.table`
   width: 100%;
-  padding: 10px 0px 10px 50px;
+  padding: 10px 30px 10px 50px;
 
   thead th {
     color: #444;
@@ -35,10 +35,10 @@ export const List = styled.table`
     color: #666;
     line-height: 20px;
     padding: 8px 0 8px 0;
+    border-bottom: 1px solid #eee;
 
     &:last-child {
       text-align: right;
-      padding-right: 30px;
     }
   }
 
