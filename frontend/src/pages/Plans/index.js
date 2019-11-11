@@ -3,7 +3,7 @@ import { MdAdd } from 'react-icons/md';
 
 import api from '~/services/api';
 import { formatPrice } from '~/util/format';
-import { MainButton } from '~/components/Button';
+import { Button } from '~/components/Button';
 
 import { Top, List } from './styles';
 
@@ -29,9 +29,14 @@ export default function Plans() {
     <>
       <Top>
         <strong>Managing plans</strong>
-        <MainButton type="button" Icon={MdAdd} iconColor="#fff">
+        <Button
+          type="button"
+          Icon={MdAdd}
+          iconColor="#fff"
+          background="#ee4d64"
+        >
           Register
-        </MainButton>
+        </Button>
       </Top>
 
       <List>

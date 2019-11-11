@@ -38,7 +38,7 @@ export const Top = styled.div`
         margin-left: 5px;
         color: #999;
 
-        &::placeholder {
+        ::placeholder {
           color: #999;
         }
       }
@@ -59,7 +59,7 @@ export const List = styled.table`
     text-transform: uppercase;
     padding-bottom: 8px;
 
-    &:last-child {
+    :last-child {
       text-align: center;
     }
   }
@@ -70,14 +70,14 @@ export const List = styled.table`
     padding: 8px 0 8px 0;
     border-bottom: 1px solid #eee;
 
-    &:last-child {
+    :last-child {
       text-align: right;
     }
   }
 
   button {
     font-size: 15px;
-    color: ${props => (props.answer ? '#42cb59' : '#4d85ee')};
+    color: #4d85ee;
     font-weight: 500;
     background: none;
     border: 0;

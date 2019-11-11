@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 
 import api from '~/services/api';
 import history from '~/services/history';
-import { MainButton, BackButton } from '~/components/Button';
+import { Button } from '~/components/Button';
 import { Container, Top, UnForm, UnInput, Label, StyleForm } from './styles';
 
 const schema = Yup.object().shape({
@@ -67,12 +67,24 @@ export default function Edit({ match }) {
         <Top>
           <strong>Student Edition</strong>
           <div>
-            <BackButton type="button" Icon={MdArrowBack} iconColor="#fff">
-              <Link to="/students">Back</Link>
-            </BackButton>
-            <MainButton type="submit" Icon={MdDone} iconColor="#fff">
+            <Link to="/students">
+              <Button
+                type="button"
+                Icon={MdArrowBack}
+                iconColor="#fff"
+                background="#ddd"
+              >
+                Back
+              </Button>
+            </Link>
+            <Button
+              type="submit"
+              Icon={MdDone}
+              iconColor="#fff"
+              background="#ee4d64"
+            >
               Save
-            </MainButton>
+            </Button>
           </div>
         </Top>
 

@@ -3,7 +3,7 @@ import { MdAdd, MdDone } from 'react-icons/md';
 import { format, parseISO } from 'date-fns';
 import api from '~/services/api';
 
-import { MainButton } from '~/components/Button';
+import { Button } from '~/components/Button';
 
 import { Top, List, Active } from './styles';
 
@@ -31,9 +31,14 @@ export default function Enrollments() {
       <Top>
         <strong>Managing enrollments</strong>
         <div>
-          <MainButton type="button" Icon={MdAdd} iconColor="#fff">
+          <Button
+            type="button"
+            Icon={MdAdd}
+            iconColor="#fff"
+            background="#ee4d64"
+          >
             Register
-          </MainButton>
+          </Button>
         </div>
       </Top>
 

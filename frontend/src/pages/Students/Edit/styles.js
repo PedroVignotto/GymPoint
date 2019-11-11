@@ -24,8 +24,8 @@ export const Top = styled.div`
     align-items: center;
     justify-content: center;
 
-    button + button {
-      margin-left: 10px;
+    button:first-child {
+      margin-right: 10px;
     }
   }
 `;
@@ -40,9 +40,9 @@ export const UnForm = styled(Form)`
   }
 
   span {
-    color: #fb6f91;
+    color: #de3b3b;
     align-self: flex-start;
-    font-weight: bold;
+    font-weight: 500;
   }
 `;
 
@@ -68,7 +68,7 @@ export const UnInput = styled(Input)`
   color: #999;
   margin: 8px 0 10px;
 
-  &::placeholder {
+  ::placeholder {
     color: #999;
   }
 `;

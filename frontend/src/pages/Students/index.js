@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
-import { MdAdd, MdSearch, MdDone } from 'react-icons/md';
+import { MdAdd, MdSearch } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
 import history from '~/services/history';
 import api from '~/services/api';
-import { MainButton } from '~/components/Button';
+import { Button } from '~/components/Button';
 
 import { Top, List } from './styles';
 
@@ -52,9 +52,16 @@ export default function Students() {
       <Top>
         <strong>Managing students</strong>
         <div>
-          <MainButton type="button" Icon={MdAdd} iconColor="#fff">
-            <Link to="/students/register">Register</Link>
-          </MainButton>
+          <Link to="/students/register">
+            <Button
+              type="button"
+              Icon={MdAdd}
+              iconColor="#fff"
+              background="#ee4d64"
+            >
+              register
+            </Button>
+          </Link>
           <span>
             <button type="button">
               <MdSearch size={24} color="#999" />
@@ -70,7 +77,6 @@ export default function Students() {
             <th>Name</th>
             <th>e-mail</th>
             <th>age</th>
-            <th>active enrollment</th>
           </tr>
         </thead>
         {students.map(student => (
@@ -79,11 +85,6 @@ export default function Students() {
               <td>{student.name}</td>
               <td>{student.email}</td>
               <td>{student.age}</td>
-              <td>
-                <span>
-                  <MdDone size={16} color="#fff" />
-                </span>
-              </td>
               <td>
                 <button type="button" onClick={() => handleEdit(student.id)}>
                   edit

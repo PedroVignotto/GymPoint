@@ -3,7 +3,7 @@ import { MdAdd, MdDone } from 'react-icons/md';
 import { parseISO, formatDistance } from 'date-fns';
 import api from '~/services/api';
 
-import { MainButton } from '~/components/Button';
+import { Button } from '~/components/Button';
 
 import { Top, List, Answer } from './styles';
 
@@ -32,9 +32,14 @@ export default function Assistances() {
       <Top>
         <strong>Requests for assistance</strong>
         <div>
-          <MainButton type="button" Icon={MdAdd} iconColor="#fff">
+          <Button
+            type="button"
+            Icon={MdAdd}
+            iconColor="#fff"
+            background="#ee4d64"
+          >
             Register
-          </MainButton>
+          </Button>
         </div>
       </Top>
 

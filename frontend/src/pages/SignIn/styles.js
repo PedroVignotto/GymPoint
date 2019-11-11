@@ -29,10 +29,10 @@ export const Content = styled.div`
     margin-top: 30px;
 
     span {
-      color: #fb6f91;
+      color: #de3b3b;
       align-self: flex-start;
       margin: 0 0 10px;
-      font-weight: bold;
+      font-weight: 500;
     }
 
     strong {
@@ -51,7 +51,7 @@ export const Content = styled.div`
       color: #999;
       margin: 0 0 10px;
 
-      &::placeholder {
+      ::placeholder {
         color: #999;
       }
 
@@ -70,8 +70,8 @@ export const Content = styled.div`
       font-size: 16px;
       transition: background 0.2s;
 
-      &:hover {
-        background: ${darken(0.03, '#ee4d64')};
+      :hover {
+        background: ${darken(0.05, '#ee4d64')};
       }
     }
   }

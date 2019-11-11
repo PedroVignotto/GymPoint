@@ -39,7 +39,7 @@ export const Top = styled.div`
         margin-left: 5px;
         color: #999;
 
-        &::placeholder {
+        ::placeholder {
           color: #999;
         }
       }
@@ -60,7 +60,7 @@ export const List = styled.table`
     text-transform: uppercase;
     padding-bottom: 8px;
 
-    &:nth-last-child(-n + 2) {
+    :nth-last-child(-n + 1) {
       text-align: center;
     }
   }
@@ -71,11 +71,11 @@ export const List = styled.table`
     padding: 8px 0 8px 0;
     border-bottom: 1px solid #eee;
 
-    &:nth-last-child(-n + 3) {
+    :nth-last-child(-n + 2) {
       text-align: center;
     }
 
-    &:last-child {
+    :last-child {
       text-align: right;
     }
   }
