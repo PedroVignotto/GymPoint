@@ -50,6 +50,7 @@ export const UnForm = styled(Form)`
 export const StyleForm = styled.section`
   background: #fff;
   padding: 30px 40px;
+  border-radius: 4px;
 
   strong {
     align-self: flex-start;

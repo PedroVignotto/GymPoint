@@ -50,6 +50,7 @@ export const List = styled.table`
   width: 100%;
   padding: 10px 30px 10px 50px;
   background: #fff;
+  border-radius: 4px;
 
   thead th {
     color: #444;
