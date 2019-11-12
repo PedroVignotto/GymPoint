@@ -49,7 +49,7 @@ export default function Enrollments() {
             <th>e-mail</th>
             <th>start</th>
             <th>end</th>
-            <th>active enrollment</th>
+            <th>active</th>
           </tr>
         </thead>
         {enrollments.map(enrollment => (

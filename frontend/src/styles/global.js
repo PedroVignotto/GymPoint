@@ -36,10 +36,22 @@ export default createGlobalStyle`
     list-style: none;
   }
 
+  input {
+    color: #666;
+
+    ::placeholder {
+      color: #999;
+    }
+
+    :disabled {
+      background: #f5f5f5
+    }
+  }
+
   button {
     cursor: pointer;
 
-    &:focus {
+    :focus {
       -webkit-box-shadow: none !important;
       box-shadow: none !important;
     }

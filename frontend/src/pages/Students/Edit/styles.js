@@ -65,12 +65,7 @@ export const UnInput = styled(Input)`
   height: 35px;
   width: 100%;
   padding: 0 15px;
-  color: #999;
   margin: 8px 0 10px;
-
-  ::placeholder {
-    color: #999;
-  }
 `;
 
 export const Label = styled.div`
