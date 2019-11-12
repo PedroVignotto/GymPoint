@@ -37,6 +37,8 @@ export default function Edit({ match }) {
       const response = await api.get(`plans/${id}`);
 
       setTotal(response.data.duration * response.data.price);
+      setPlanDuration(response.data.duration);
+      setPlanPrice(response.data.price);
       setPlan(response.data);
     }
 
