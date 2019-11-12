@@ -9,6 +9,8 @@ import RegisterStudent from '~/pages/Students/Register';
 import EditStudent from '~/pages/Students/Edit';
 
 import Plans from '~/pages/Plans';
+import EditPlan from '~/pages/Plans/Edit';
+
 import Enrollments from '~/pages/Enrollments';
 import Assistances from '~/pages/Assistances';
 import Error404 from '~/pages/_Error404';
@@ -22,7 +24,9 @@ export default function Routes() {
       <Route path="/students/register" component={RegisterStudent} isPrivate />
       <Route path="/students/edit/:id" component={EditStudent} isPrivate />
 
-      <Route path="/plans" component={Plans} isPrivate />
+      <Route path="/plans" exact component={Plans} isPrivate />
+      <Route path="/plans/edit/:id" component={EditPlan} isPrivate />
+
       <Route path="/enrollments" component={Enrollments} isPrivate />
       <Route path="/assistances" component={Assistances} isPrivate />
       <Route path="/*" component={Error404} isPrivate />

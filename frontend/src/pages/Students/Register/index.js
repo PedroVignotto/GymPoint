@@ -40,7 +40,7 @@ export default function Register() {
       toast.success('User successfully added');
       history.push('/students');
     } catch (err) {
-      toast.error('Something went wrong try again');
+      toast.error(err.response.data.error);
     }
   }
 

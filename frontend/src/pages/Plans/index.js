@@ -3,6 +3,7 @@ import { MdAdd } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
+import history from '~/services/history';
 import api from '~/services/api';
 import { formatPrice } from '~/util/format';
 import { Button } from '~/components/Button';
@@ -26,6 +27,10 @@ export default function Plans() {
 
     loadStudents();
   }, [plans]);
+
+  function handleEdit(id) {
+    history.push(`/plans/edit/${id}`);
+  }
 
   async function handleDelete(id) {
     try {
@@ -79,7 +84,9 @@ export default function Plans() {
             </td>
             <td>{plan.priceFormatted}</td>
             <td>
-              <button type="button">edit</button>
+              <button type="button" onClick={() => handleEdit(plan.id)}>
+                edit
+              </button>
               <button type="button" onClick={() => handleDelete(plan.id)}>
                 delete
               </button>
