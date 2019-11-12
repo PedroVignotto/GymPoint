@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MdAdd } from 'react-icons/md';
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 import api from '~/services/api';
 import { formatPrice } from '~/util/format';
@@ -23,7 +25,27 @@ export default function Plans() {
     }
 
     loadStudents();
-  }, []);
+  }, [plans]);
+
+  async function handleDelete(id) {
+    try {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        showCancelButton: true,
+        confirmButtonColor: '#42cb59',
+        cancelButtonColor: '#ee4d64',
+        confirmButtonText: 'Yes, delete it!',
+      }).then(result => {
+        if (result.value) {
+          api.delete(`plans/${id}`);
+          toast.success('Plan successfully deleted');
+        }
+      });
+    } catch (err) {
+      toast.error('Something went wrong try again');
+    }
+  }
 
   return (
     <>
@@ -44,7 +66,7 @@ export default function Plans() {
           <tr>
             <th>Title</th>
             <th>Duration</th>
-            <th>monthly payment</th>
+            <th>Monthly payment</th>
           </tr>
         </thead>
         {plans.map(plan => (
@@ -58,7 +80,9 @@ export default function Plans() {
             <td>{plan.priceFormatted}</td>
             <td>
               <button type="button">edit</button>
-              <button type="button">delete</button>
+              <button type="button" onClick={() => handleDelete(plan.id)}>
+                delete
+              </button>
             </td>
           </tbody>
         ))}
