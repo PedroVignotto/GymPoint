@@ -29,11 +29,10 @@ const schema = Yup.object().shape({
 
 export default function Edit({ match }) {
   const [student, setStudent] = useState([]);
+  const { id } = match.params;
 
   useEffect(() => {
     async function loadStudent() {
-      const { id } = match.params;
-
       const response = await api.get(`students/${id}`);
 
       setStudent(response.data);
@@ -44,8 +43,6 @@ export default function Edit({ match }) {
 
   async function handleSubmit({ name, email, age, weight, height }) {
     try {
-      const { id } = match.params;
-
       await api.put(`students/${id}`, {
         name,
         email,

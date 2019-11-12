@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import PropTypes from 'prop-types';
 import { MdDone, MdArrowBack } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -21,48 +20,35 @@ const schema = Yup.object().shape({
     .required('Weight is required'),
 });
 
-export default function Edit({ match }) {
-  const [plan, setPlan] = useState([]);
-  const [total, setTotal] = useState(null);
+export default function Register() {
+  const [total, setTotal] = useState(0);
   const [planDuration, setPlanDuration] = useState(null);
   const [planPrice, setPlanPrice] = useState(null);
-  const { id } = match.params;
 
   useEffect(() => {
     setTotal(planDuration * planPrice);
   }, [planDuration, planPrice]);
 
-  useEffect(() => {
-    async function loadPlan() {
-      const response = await api.get(`plans/${id}`);
-
-      setTotal(response.data.duration * response.data.price);
-      setPlan(response.data);
-    }
-
-    loadPlan();
-  }, []); //eslint-disable-line
-
   async function handleSubmit({ title, duration, price }) {
     try {
-      await api.put(`plans/${id}`, {
+      await api.post('plans', {
         title,
         duration,
         price,
       });
 
-      toast.success('Plan updated successfully');
+      toast.success('Plan successfully added');
       history.goBack();
     } catch (err) {
-      toast.error('Something went wrong try again');
+      toast.error(err.response.data.error);
     }
   }
 
   return (
     <Container>
-      <UnForm initialData={plan} onSubmit={handleSubmit} schema={schema}>
+      <UnForm onSubmit={handleSubmit} schema={schema}>
         <Top>
-          <strong>Plan Edition</strong>
+          <strong>Plan registration</strong>
           <div>
             <Link to="/plans">
               <Button
@@ -113,7 +99,3 @@ export default function Edit({ match }) {
     </Container>
   );
 }
-
-Edit.propTypes = {
-  match: PropTypes.number.isRequired,
-};

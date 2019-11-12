@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MdAdd } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 import history from '~/services/history';
 import api from '~/services/api';
@@ -56,14 +57,16 @@ export default function Plans() {
     <>
       <Top>
         <strong>Managing plans</strong>
-        <Button
-          type="button"
-          Icon={MdAdd}
-          iconColor="#fff"
-          background="#ee4d64"
-        >
-          Register
-        </Button>
+        <Link to="/plans/register">
+          <Button
+            type="button"
+            Icon={MdAdd}
+            iconColor="#fff"
+            background="#ee4d64"
+          >
+            Register
+          </Button>
+        </Link>
       </Top>
 
       <List>
