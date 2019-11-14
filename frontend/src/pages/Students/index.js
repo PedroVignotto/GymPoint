@@ -23,10 +23,6 @@ export default function Students() {
     loadStudents();
   }, [students]);
 
-  function handleEdit(id) {
-    history.push(`/students/edit/${id}`);
-  }
-
   async function handleDelete(id) {
     try {
       Swal.fire({
@@ -66,7 +62,11 @@ export default function Students() {
             <button type="button">
               <MdSearch size={24} color="#999" />
             </button>
-            <input name="search" placeholder="Search student" />
+            <input
+              name="search"
+              placeholder="Search student"
+              autoComplete="off"
+            />
           </span>
         </div>
       </Top>
@@ -86,7 +86,10 @@ export default function Students() {
               <td>{student.email}</td>
               <td>{student.age}</td>
               <td>
-                <button type="button" onClick={() => handleEdit(student.id)}>
+                <button
+                  type="button"
+                  onClick={() => history.push(`/students/edit/${student.id}`)}
+                >
                   edit
                 </button>
                 <button type="button" onClick={() => handleDelete(student.id)}>

@@ -29,10 +29,6 @@ export default function Plans() {
     loadStudents();
   }, [plans]);
 
-  function handleEdit(id) {
-    history.push(`/plans/edit/${id}`);
-  }
-
   async function handleDelete(id) {
     try {
       Swal.fire({
@@ -87,7 +83,10 @@ export default function Plans() {
             </td>
             <td>{plan.priceFormatted}</td>
             <td>
-              <button type="button" onClick={() => handleEdit(plan.id)}>
+              <button
+                type="button"
+                onClick={() => history.push(`/plans/edit/${plan.id}`)}
+              >
                 edit
               </button>
               <button type="button" onClick={() => handleDelete(plan.id)}>

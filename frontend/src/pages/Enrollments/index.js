@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { MdAdd, MdDone } from 'react-icons/md';
 import { format, parseISO } from 'date-fns';
-import api from '~/services/api';
 
+import api from '~/services/api';
 import { Button } from '~/components/Button';
 
 import { Top, List, Active } from './styles';
