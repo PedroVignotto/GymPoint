@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { MdAdd, MdDone } from 'react-icons/md';
 import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 import api from '~/services/api';
 import { Button } from '~/components/Button';
@@ -12,7 +14,7 @@ export default function Enrollments() {
   const [enrollments, setEnrollments] = useState([]);
 
   useEffect(() => {
-    async function loadStudents() {
+    async function loadEnrollments() {
       const response = await api.get('enrollments');
 
       const data = response.data.map(enrollment => ({
@@ -24,8 +26,28 @@ export default function Enrollments() {
       setEnrollments(data);
     }
 
-    loadStudents();
-  }, []);
+    loadEnrollments();
+  }, [enrollments]);
+
+  async function handleDelete(id) {
+    try {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        showCancelButton: true,
+        confirmButtonColor: '#42cb59',
+        cancelButtonColor: '#ee4d64',
+        confirmButtonText: 'Yes, delete it!',
+      }).then(result => {
+        if (result.value) {
+          api.delete(`enrollments/${id}`);
+          toast.success('Enrollment successfully deleted');
+        }
+      });
+    } catch (err) {
+      toast.error(err.response.data.error);
+    }
+  }
 
   return (
     <>
@@ -68,7 +90,9 @@ export default function Enrollments() {
             </td>
             <td>
               <button type="button">edit</button>
-              <button type="button">delete</button>
+              <button type="button" onClick={() => handleDelete(enrollment.id)}>
+                delete
+              </button>
             </td>
           </tbody>
         ))}
