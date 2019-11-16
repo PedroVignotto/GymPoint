@@ -13,6 +13,7 @@ import RegisterPlan from '~/pages/Plans/Register';
 import EditPlan from '~/pages/Plans/Edit';
 
 import Enrollments from '~/pages/Enrollments';
+import RegisterEnrollments from '~/pages/Enrollments/Register';
 
 import Assistances from '~/pages/Assistances';
 import Error404 from '~/pages/_Error404';
@@ -27,10 +28,16 @@ export default function Routes() {
       <Route path="/students/edit/:id" component={EditStudent} isPrivate />
 
       <Route path="/plans" exact component={Plans} isPrivate />
-      <Route path="/plans/register" exact component={RegisterPlan} isPrivate />
+      <Route path="/plans/register" component={RegisterPlan} isPrivate />
       <Route path="/plans/edit/:id" component={EditPlan} isPrivate />
 
       <Route path="/enrollments" exact component={Enrollments} isPrivate />
+      <Route
+        path="/enrollments/register"
+        component={RegisterEnrollments}
+        isPrivate
+      />
+
       <Route path="/assistances" component={Assistances} isPrivate />
       <Route path="/*" component={Error404} isPrivate />
     </Switch>

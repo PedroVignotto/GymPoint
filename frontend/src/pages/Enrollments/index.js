@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MdAdd, MdDone } from 'react-icons/md';
 import { format, parseISO } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 import api from '~/services/api';
 import { Button } from '~/components/Button';
@@ -31,14 +32,16 @@ export default function Enrollments() {
       <Top>
         <strong>Managing enrollments</strong>
         <div>
-          <Button
-            type="button"
-            Icon={MdAdd}
-            iconColor="#fff"
-            background="#ee4d64"
-          >
-            Register
-          </Button>
+          <Link to="/enrollments/register">
+            <Button
+              type="button"
+              Icon={MdAdd}
+              iconColor="#fff"
+              background="#ee4d64"
+            >
+              Register
+            </Button>
+          </Link>
         </div>
       </Top>
 
