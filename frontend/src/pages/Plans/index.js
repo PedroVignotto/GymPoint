@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import history from '~/services/history';
 import api from '~/services/api';
 import { formatPrice } from '~/util/format';
-import { Button } from '~/components/Button';
+import Button from '~/components/Button';
 
 import { Top, List } from './styles';
 
@@ -27,7 +27,7 @@ export default function Plans() {
     }
 
     loadStudents();
-  }, [plans]);
+  }, []);
 
   async function handleDelete(id) {
     try {

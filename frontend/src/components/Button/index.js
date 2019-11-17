@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-export function Button({ children, Icon, background, ...rest }) {
+export default function Button({ children, Icon, background, ...rest }) {
   return (
     <Container {...rest} background={background}>
       <Icon size={24} color="#fff" />

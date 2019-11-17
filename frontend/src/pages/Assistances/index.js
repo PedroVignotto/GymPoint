@@ -3,7 +3,7 @@ import { MdAdd, MdDone } from 'react-icons/md';
 import { parseISO, formatDistance } from 'date-fns';
 import api from '~/services/api';
 
-import { Button } from '~/components/Button';
+import Button from '~/components/Button';
 
 import { Top, List, Answer } from './styles';
 
@@ -11,7 +11,7 @@ export default function Assistances() {
   const [assistances, setAssistances] = useState([]);
 
   useEffect(() => {
-    async function loadStudents() {
+    async function loadAssistances() {
       const response = await api.get('help-orders/answers');
 
       const data = response.data.map(assistance => ({
@@ -24,7 +24,7 @@ export default function Assistances() {
       setAssistances(data);
     }
 
-    loadStudents();
+    loadAssistances();
   }, []);
 
   return (

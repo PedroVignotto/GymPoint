@@ -6,7 +6,8 @@ import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
 import api from '~/services/api';
-import { Button } from '~/components/Button';
+// import history from '~/services/history';
+import Button from '~/components/Button';
 
 import { Top, List, Active } from './styles';
 
@@ -27,7 +28,7 @@ export default function Enrollments() {
     }
 
     loadEnrollments();
-  }, [enrollments]);
+  }, []);
 
   async function handleDelete(id) {
     try {

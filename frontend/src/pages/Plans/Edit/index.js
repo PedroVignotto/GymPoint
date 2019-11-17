@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 
 import api from '~/services/api';
 import history from '~/services/history';
-import { Button } from '~/components/Button';
+import Button from '~/components/Button';
 import { Container, Top, UnForm, UnInput, Label, StyleForm } from './styles';
 
 const schema = Yup.object().shape({
@@ -64,7 +64,7 @@ export default function Edit({ match }) {
     <Container>
       <UnForm initialData={plan} onSubmit={handleSubmit} schema={schema}>
         <Top>
-          <strong>Plan Edition</strong>
+          <strong>Plan edition</strong>
           <div>
             <Link to="/plans">
               <Button

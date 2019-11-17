@@ -7,19 +7,13 @@ import { Link } from 'react-router-dom';
 import api from '~/services/api';
 import history from '~/services/history';
 
-import { Button } from '~/components/Button';
+import Select from '~/components/Select';
+import Button from '~/components/Button';
 import DatePicker from '~/components/DatePicker';
+
 import { formatPrice } from '~/util/format';
 
-import {
-  Container,
-  Top,
-  UnForm,
-  UnInput,
-  Label,
-  StyleForm,
-  UnSelect,
-} from './styles';
+import { Container, Top, UnForm, UnInput, Label, StyleForm } from './styles';
 
 export default function Register() {
   const [newPlan, setNewPlan] = useState();
@@ -77,9 +71,9 @@ export default function Register() {
 
         <StyleForm>
           <strong>Student</strong>
-          <UnSelect name="student" />
+          <Select name="student" />
           <strong>Plan</strong>
-          <UnSelect name="plan" setChange={setNewPlan} />
+          <Select name="plan" setChange={setNewPlan} />
           <aside>
             <Label>
               <strong>Start date</strong>
@@ -87,7 +81,7 @@ export default function Register() {
             </Label>
             <Label>
               <strong>End date</strong>
-              <UnInput name="total" value={end_date || ''} disabled />
+              <UnInput name="end_date" value={end_date || ''} disabled />
             </Label>
             <Label>
               <strong>Final price</strong>

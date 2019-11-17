@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 import api from '~/services/api';
 import history from '~/services/history';
-import { Button } from '~/components/Button';
+import Button from '~/components/Button';
 import { Container, Top, UnForm, UnInput, Label, StyleForm } from './styles';
 
 const schema = Yup.object().shape({

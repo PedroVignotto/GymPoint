@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Form, Input } from '@rocketseat/unform';
-import Select from '~/components/Select';
 
 export const Container = styled.div`
   width: 100%;
@@ -90,8 +89,6 @@ export const UnInput = styled(Input)`
   padding: 0 15px;
   margin: 8px 0 10px;
 `;
-
-export const UnSelect = styled(Select)``;
 
 export const Label = styled.div`
   + div {
