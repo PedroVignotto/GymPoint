@@ -35,6 +35,8 @@ export default function Students() {
       }).then(result => {
         if (result.value) {
           api.delete(`students/${id}`);
+
+          setStudents(students.filter(student => student.id !== id));
           toast.success('Student successfully deleted');
         }
       });

@@ -42,6 +42,10 @@ export default function Enrollments() {
       }).then(result => {
         if (result.value) {
           api.delete(`enrollments/${id}`);
+
+          setEnrollments(
+            enrollments.filter(enrollment => enrollment.id !== id)
+          );
           toast.success('Enrollment successfully deleted');
         }
       });

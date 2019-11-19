@@ -41,6 +41,8 @@ export default function Plans() {
       }).then(result => {
         if (result.value) {
           api.delete(`plans/${id}`);
+
+          setPlans(plans.filter(plan => plan.id !== id));
           toast.success('Plan successfully deleted');
         }
       });
