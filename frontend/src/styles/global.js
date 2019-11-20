@@ -21,7 +21,8 @@ export default createGlobalStyle`
   }
 
   body {
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased !important;
+    text-rendering: optimizeLegibility !important;
   }
 
   body, input, button {

@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import { format, addMonths } from 'date-fns';
 import { MdDone, MdArrowBack } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
 
 import api from '~/services/api';
 import history from '~/services/history';
@@ -10,10 +11,21 @@ import history from '~/services/history';
 import Select from '~/components/Select';
 import Button from '~/components/Button';
 import DatePicker from '~/components/DatePicker';
+import Input from '~/components/Input';
 
 import { formatPrice } from '~/util/format';
 
-import { Container, Top, UnForm, UnInput, Label, StyleForm } from './styles';
+import { Container, Top, UnForm, Label, StyleForm } from './styles';
+
+const schema = Yup.object().shape({
+  student: Yup.object()
+    .required('Select one student')
+    .typeError('Invalid value'),
+  plan: Yup.object()
+    .required('Select one plan')
+    .typeError('Invalid value'),
+  start_date: Yup.date().required('Start date is required'),
+});
 
 export default function Register() {
   const [newPlan, setNewPlan] = useState();
@@ -44,7 +56,7 @@ export default function Register() {
 
   return (
     <Container>
-      <UnForm onSubmit={handleSubmit}>
+      <UnForm onSubmit={handleSubmit} schema={schema}>
         <Top>
           <strong>Enrollment registration</strong>
           <div>
@@ -77,15 +89,19 @@ export default function Register() {
           <aside>
             <Label>
               <strong>Start date</strong>
+              <br />
               <DatePicker name="start_date" setChange={setStartDate} />
             </Label>
             <Label>
-              <strong>End date</strong>
-              <UnInput name="end_date" value={end_date || ''} disabled />
+              <Input
+                label="End date"
+                name="end_date"
+                value={end_date || ''}
+                disabled
+              />
             </Label>
             <Label>
-              <strong>Final price</strong>
-              <UnInput name="total" value={total} disabled />
+              <Input label="Final price" name="total" value={total} disabled />
             </Label>
           </aside>
         </StyleForm>

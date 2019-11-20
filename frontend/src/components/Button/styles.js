@@ -4,6 +4,7 @@ import { darken } from 'polished';
 export const Container = styled.button`
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 4px 16px;
   border: none;
   border-radius: 4px;

@@ -15,7 +15,7 @@ export default function Plans() {
   const [plans, setPlans] = useState([]);
 
   useEffect(() => {
-    async function loadStudents() {
+    async function loadPlans() {
       const response = await api.get('plans');
 
       const data = response.data.map(plan => ({
@@ -26,7 +26,7 @@ export default function Plans() {
       setPlans(data);
     }
 
-    loadStudents();
+    loadPlans();
   }, []);
 
   async function handleDelete(id) {

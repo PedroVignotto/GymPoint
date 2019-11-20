@@ -7,15 +7,19 @@ import * as Yup from 'yup';
 import api from '~/services/api';
 import history from '~/services/history';
 import Button from '~/components/Button';
-import { Container, Top, UnForm, UnInput, Label, StyleForm } from './styles';
+import Input from '~/components/Input';
+
+import { Container, Top, UnForm, StyleForm } from './styles';
 
 const schema = Yup.object().shape({
   title: Yup.string().required(),
   duration: Yup.number('Duration must be a number')
+    .typeError('Invalid value')
     .integer('Duration must be an integer')
     .positive('Duration must be a positive number')
     .required('Duration is required'),
   price: Yup.number('Weight must be a number')
+    .typeError('Invalid value')
     .positive('Weight must be a positive number')
     .required('Weight is required'),
 });
@@ -72,28 +76,20 @@ export default function Register() {
         </Top>
 
         <StyleForm>
-          <strong>Title</strong>
-          <UnInput name="title" />
-          <aside>
-            <Label>
-              <strong>Duration (in months)</strong>
-              <UnInput
-                name="duration"
-                onChange={e => setPlanDuration(e.target.value)}
-              />
-            </Label>
-            <Label>
-              <strong>Monthly payment</strong>
-              <UnInput
-                name="price"
-                onChange={e => setPlanPrice(e.target.value)}
-              />
-            </Label>
-            <Label>
-              <strong>Total price</strong>
-              <UnInput name="total" value={total} disabled />
-            </Label>
-          </aside>
+          <Input label="Title" name="title" />
+          <div>
+            <Input
+              label="Duration (in months)"
+              name="duration"
+              onChange={e => setPlanDuration(e.target.value)}
+            />
+            <Input
+              label="Monthly payment"
+              name="price"
+              onChange={e => setPlanPrice(e.target.value)}
+            />
+            <Input label="Total price" name="total" value={total} disabled />
+          </div>
         </StyleForm>
       </UnForm>
     </Container>

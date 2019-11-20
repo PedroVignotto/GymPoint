@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
 
 export const Container = styled.div`
   height: 100%;
@@ -11,7 +10,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 100%;
-  height: 448px;
+  height: 456px;
   max-width: 360px;
   text-align: center;
   background: #fff;
@@ -26,48 +25,11 @@ export const Content = styled.div`
   form {
     display: flex;
     flex-direction: column;
+    text-align: start;
     margin-top: 30px;
 
-    span {
-      color: #de3b3b;
-      align-self: flex-start;
-      margin: 0 0 10px;
-      font-weight: 500;
-    }
-
-    strong {
-      align-self: flex-start;
-      color: #444;
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
-
-    input {
-      background: none;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      height: 45px;
-      padding: 0 15px;
-      margin: 0 0 10px;
-
-      + strong {
-        margin-top: 5px;
-      }
-    }
-
     button {
-      margin: 5px 0 0;
       height: 44px;
-      background: #ee4d64;
-      color: #fff;
-      border: 0;
-      border-radius: 4px;
-      font-size: 16px;
-      transition: background 0.2s;
-
-      :hover {
-        background: ${darken(0.05, '#ee4d64')};
-      }
     }
   }
 `;

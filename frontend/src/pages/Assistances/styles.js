@@ -58,10 +58,6 @@ export const List = styled.table`
     font-weight: 700;
     text-transform: uppercase;
     padding-bottom: 8px;
-
-    :last-child {
-      text-align: center;
-    }
   }
 
   tbody td {

@@ -48,7 +48,6 @@ export default function Assistances() {
           <tr>
             <th>Date</th>
             <th>Student</th>
-            <th>Answer</th>
           </tr>
         </thead>
         {assistances.map(assistance => (
@@ -56,16 +55,7 @@ export default function Assistances() {
             <td>{assistance.createdAt}</td>
             <td>{assistance.student.name}</td>
             <td>
-              <Answer answer={assistance.answer_at}>
-                <MdDone size={16} color="#fff" />
-              </Answer>
-            </td>
-            <td>
-              {assistance.answer_at ? (
-                <button type="button">view</button>
-              ) : (
-                <button type="button">reply</button>
-              )}
+              <button type="button">reply</button>
             </td>
           </tbody>
         ))}

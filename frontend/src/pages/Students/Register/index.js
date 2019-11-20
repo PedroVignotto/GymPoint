@@ -7,7 +7,9 @@ import * as Yup from 'yup';
 import api from '~/services/api';
 import history from '~/services/history';
 import Button from '~/components/Button';
-import { Container, Top, UnForm, UnInput, Label, StyleForm } from './styles';
+import Input from '~/components/Input';
+
+import { Container, Top, UnForm, StyleForm } from './styles';
 
 const schema = Yup.object().shape({
   name: Yup.string().required(),
@@ -16,12 +18,15 @@ const schema = Yup.object().shape({
     .required('E-mail is required'),
   age: Yup.number('Age must be a number')
     .integer('Age must be an integer')
+    .typeError('Invalid value')
     .positive('Age must be a positive number')
     .required('Age is required'),
   weight: Yup.number('Weight must be a number')
+    .typeError('Invalid value')
     .positive('Weight must be a positive number')
     .required('Weight is required'),
   height: Yup.number('Height must be a number')
+    .typeError('Invalid value')
     .positive('Height must be a positive number')
     .required('Height is required'),
 });
@@ -72,25 +77,13 @@ export default function Register() {
         </Top>
 
         <StyleForm>
-          <strong>Full name</strong>
-          <UnInput name="name" />
-          <br />
-          <strong>E-mail address</strong>
-          <UnInput name="email" />
-          <aside>
-            <Label>
-              <strong>Age</strong>
-              <UnInput name="age" />
-            </Label>
-            <Label>
-              <strong>Weight (in kg)</strong>
-              <UnInput name="weight" />
-            </Label>
-            <Label>
-              <strong>Height</strong>
-              <UnInput name="height" />
-            </Label>
-          </aside>
+          <Input label="Full name" name="name" />
+          <Input label="E-mail address" name="email" />
+          <div>
+            <Input label="Age" name="age" />
+            <Input label="Weight (in kg)" name="weight" />
+            <Input label="Height" name="height" />
+          </div>
         </StyleForm>
       </UnForm>
     </Container>
