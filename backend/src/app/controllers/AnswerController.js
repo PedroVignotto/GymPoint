@@ -8,7 +8,7 @@ class AnswerController {
     const enrollments = await Help_order.findAll({
       where: { answer: null },
       attributes: ['id', 'question', 'created_at'],
-      order: ['id'],
+      order: ['created_at'],
       limit: 20,
       offset: (page - 1) * 20,
       include: [
