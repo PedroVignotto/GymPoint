@@ -16,13 +16,16 @@ const schema = Yup.object().shape({
     .email('Invalid e-mail address')
     .required('E-mail is required'),
   age: Yup.number('Age must be a number')
+    .typeError('Invalid value')
     .integer('Age must be an integer')
     .positive('Age must be a positive number')
     .required('Age is required'),
   weight: Yup.number('Weight must be a number')
+    .typeError('Invalid value')
     .positive('Weight must be a positive number')
     .required('Weight is required'),
   height: Yup.number('Height must be a number')
+    .typeError('Invalid value')
     .positive('Height must be a positive number')
     .required('Height is required'),
 });

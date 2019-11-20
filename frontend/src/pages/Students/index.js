@@ -22,10 +22,9 @@ export default function Students() {
     setStudents(response.data);
   }
 
-
   useEffect(() => {
     loadStudents();
-  }, []);
+  }, []); //eslint-disable-line
 
   async function handleDelete(id) {
     try {

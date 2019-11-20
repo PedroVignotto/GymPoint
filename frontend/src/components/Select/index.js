@@ -5,6 +5,7 @@ import { useField } from '@rocketseat/unform';
 
 import api from '~/services/api';
 
+// eslint-disable-next-line react/prop-types
 export default function ReactSelect({ name, label, setChange }) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);

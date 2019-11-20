@@ -13,10 +13,12 @@ import { Container, Top, UnForm, UnInput, Label, StyleForm } from './styles';
 const schema = Yup.object().shape({
   title: Yup.string().required(),
   duration: Yup.number('Duration must be a number')
+    .typeError('Invalid value')
     .integer('Duration must be an integer')
     .positive('Duration must be a positive number')
     .required('Duration is required'),
   price: Yup.number('Weight must be a number')
+    .typeError('Invalid value')
     .positive('Weight must be a positive number')
     .required('Weight is required'),
 });

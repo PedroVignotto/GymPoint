@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Modal } from 'react-bootstrap';
 
 export const Top = styled.div`
   display: flex;
@@ -10,39 +11,6 @@ export const Top = styled.div`
     font-size: 24px;
     font-weight: bold;
     color: #444;
-  }
-
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    span {
-      display: flex;
-      align-items: center;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      margin-left: 16px;
-      padding: 0 10px 0 5px;
-
-      button {
-        display: flex;
-        align-items: center;
-        background: none;
-        border: 0;
-      }
-
-      input {
-        border: 0;
-        height: 32px;
-        margin-left: 5px;
-        color: #999;
-
-        ::placeholder {
-          color: #999;
-        }
-      }
-    }
   }
 `;
 
@@ -81,13 +49,62 @@ export const List = styled.table`
   }
 `;
 
-export const Answer = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  background: ${props => (props.answer ? '#42cb59' : '#ddd')};
-  border-radius: 50%;
-  margin: 0 auto;
+export const Modals = styled(Modal)`
+  div.modal-body {
+    padding: 30px;
+
+    span {
+      color: #e0042d;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.3;
+      width: 100%;
+      margin: 8px 0 4px;
+      transform: none;
+      animation: fadeIn 350ms ease-in-out 1;
+
+      @keyframes fadeIn {
+        from {
+          transform: translateY(-20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    }
+
+    strong {
+      color: #444;
+      font-weight: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 8px 0;
+      color: #666;
+      line-height: 26px;
+      text-align: justify;
+    }
+
+    textarea {
+      resize: none;
+      width: 100%;
+      height: 150px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      color: #444;
+      background: none;
+      padding: 8px 16px;
+    }
+
+    button {
+      width: 100%;
+      height: 40px;
+      margin-top: 8px;
+    }
+  }
 `;
