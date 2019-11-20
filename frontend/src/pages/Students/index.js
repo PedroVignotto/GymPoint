@@ -12,14 +12,18 @@ import { Top, List } from './styles';
 
 export default function Students() {
   const [students, setStudents] = useState([]);
+  const [search, setSearch] = useState([]);
+
+  async function loadStudents() {
+    const response = await api.get('students', {
+      params: { q: search },
+    });
+
+    setStudents(response.data);
+  }
+
 
   useEffect(() => {
-    async function loadStudents() {
-      const response = await api.get('students');
-
-      setStudents(response.data);
-    }
-
     loadStudents();
   }, []);
 
@@ -45,6 +49,10 @@ export default function Students() {
     }
   }
 
+  function handleSearch(e) {
+    setSearch(e.target.value);
+  }
+
   return (
     <>
       <Top>
@@ -61,13 +69,15 @@ export default function Students() {
             </Button>
           </Link>
           <span>
-            <button type="button">
+            <button type="button" onClick={() => loadStudents()}>
               <MdSearch size={24} color="#999" />
             </button>
             <input
               name="search"
               placeholder="Search student"
               autoComplete="off"
+              onKeyDown={event => event.key === 'Enter' && loadStudents()}
+              onChange={handleSearch}
             />
           </span>
         </div>
