@@ -32,6 +32,26 @@ class EnrollmentController {
     return res.json(enrollments);
   }
 
+  async show(req, res) {
+    const enrollments = await Enrollment.findOne({
+      where: { id: req.params.id },
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['id', 'name', 'email'],
+        },
+        {
+          model: Plan,
+          as: 'plan',
+          attributes: ['id', 'title', 'price', 'duration'],
+        },
+      ],
+    });
+
+    return res.json(enrollments);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       student_id: Yup.number().required(),
