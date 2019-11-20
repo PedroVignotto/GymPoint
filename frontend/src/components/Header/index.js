@@ -1,13 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { MdExitToApp } from 'react-icons/md';
 
 import { signOut } from '~/store/modules/auth/actions';
 
 import logoHeader from '~/assets/logoHeader.svg';
 
-import { Container, Content } from './styles';
+import { Container, Content, Link } from './styles';
 
 export default function Header() {
   const dispatch = useDispatch();

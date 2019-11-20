@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
+import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
   background: #fff;
   padding: 0 30px;
   border-bottom: 1px solid #eee;
 `;
+
+export const Link = styled(NavLink).attrs({
+  activeStyle: { color: '#ee4d64' },
+})``;
 
 export const Content = styled.div`
   height: 64px;
