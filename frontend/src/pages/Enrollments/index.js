@@ -83,22 +83,27 @@ export default function Enrollments() {
           </tr>
         </thead>
         {enrollments.map(enrollment => (
-          <tbody>
-            <td>{enrollment.student.name}</td>
-            <td>{enrollment.plan.title}</td>
-            <td>{enrollment.startDate}</td>
-            <td>{enrollment.endDate}</td>
-            <td>
-              <Active active={enrollment.active}>
-                <MdDone size={16} color="#fff" />
-              </Active>
-            </td>
-            <td>
-              <button type="button">edit</button>
-              <button type="button" onClick={() => handleDelete(enrollment.id)}>
-                delete
-              </button>
-            </td>
+          <tbody key={enrollment.id}>
+            <tr>
+              <td>{enrollment.student.name}</td>
+              <td>{enrollment.plan.title}</td>
+              <td>{enrollment.startDate}</td>
+              <td>{enrollment.endDate}</td>
+              <td>
+                <Active active={enrollment.active}>
+                  <MdDone size={16} color="#fff" />
+                </Active>
+              </td>
+              <td>
+                <button type="button">edit</button>
+                <button
+                  type="button"
+                  onClick={() => handleDelete(enrollment.id)}
+                >
+                  delete
+                </button>
+              </td>
+            </tr>
           </tbody>
         ))}
       </List>

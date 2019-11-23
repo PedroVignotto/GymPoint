@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { parseISO, formatDistance } from 'date-fns';
 import { toast } from 'react-toastify';
-import { Form, Textarea, Input } from '@rocketseat/unform';
+import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
 import api from '~/services/api';
@@ -70,14 +70,19 @@ export default function Assistances() {
           </tr>
         </thead>
         {assistances.map(assistance => (
-          <tbody>
-            <td>{assistance.createdAt}</td>
-            <td>{assistance.student.name}</td>
-            <td>
-              <button type="button" onClick={() => handleOpenModal(assistance)}>
-                reply
-              </button>
-            </td>
+          <tbody key={assistance.id}>
+            <tr>
+              <td>{assistance.createdAt}</td>
+              <td>{assistance.student.name}</td>
+              <td>
+                <button
+                  type="button"
+                  onClick={() => handleOpenModal(assistance)}
+                >
+                  reply
+                </button>
+              </td>
+            </tr>
           </tbody>
         ))}
       </List>
@@ -89,7 +94,11 @@ export default function Assistances() {
           <strong>Your answer</strong>
           <Form initialData={question} onSubmit={handleSubmit} schema={schema}>
             <Input name="id" type="hidden" />
-            <Textarea name="answer" placeholder="Write here your answer" />
+            <Input
+              name="answer"
+              placeholder="Write here your answer"
+              multiline
+            />
             <Button type="submit" background="#ee4d64">
               Answer student
             </Button>

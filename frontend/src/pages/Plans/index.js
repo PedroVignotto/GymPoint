@@ -76,25 +76,27 @@ export default function Plans() {
           </tr>
         </thead>
         {plans.map(plan => (
-          <tbody>
-            <td>{plan.title}</td>
-            <td>
-              {plan.duration === 1
-                ? `${plan.duration} Month`
-                : `${plan.duration} Months`}
-            </td>
-            <td>{plan.priceFormatted}</td>
-            <td>
-              <button
-                type="button"
-                onClick={() => history.push(`/plans/edit/${plan.id}`)}
-              >
-                edit
-              </button>
-              <button type="button" onClick={() => handleDelete(plan.id)}>
-                delete
-              </button>
-            </td>
+          <tbody key={plan.id}>
+            <tr>
+              <td>{plan.title}</td>
+              <td>
+                {plan.duration === 1
+                  ? `${plan.duration} Month`
+                  : `${plan.duration} Months`}
+              </td>
+              <td>{plan.priceFormatted}</td>
+              <td>
+                <button
+                  type="button"
+                  onClick={() => history.push(`/plans/edit/${plan.id}`)}
+                >
+                  edit
+                </button>
+                <button type="button" onClick={() => handleDelete(plan.id)}>
+                  delete
+                </button>
+              </td>
+            </tr>
           </tbody>
         ))}
       </List>

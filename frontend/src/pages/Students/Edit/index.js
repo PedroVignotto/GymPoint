@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import PropTypes from 'prop-types';
 import { MdDone, MdArrowBack } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -8,7 +7,9 @@ import * as Yup from 'yup';
 import api from '~/services/api';
 import history from '~/services/history';
 import Button from '~/components/Button';
-import { Container, Top, UnForm, UnInput, Label, StyleForm } from './styles';
+import Input from '~/components/Input';
+
+import { Container, Top, UnForm, StyleForm } from './styles';
 
 const schema = Yup.object().shape({
   name: Yup.string().required(),
@@ -89,31 +90,15 @@ export default function Edit({ match }) {
         </Top>
 
         <StyleForm>
-          <strong>Full name</strong>
-          <UnInput name="name" />
-          <br />
-          <strong>E-mail address</strong>
-          <UnInput name="email" />
-          <aside>
-            <Label>
-              <strong>Age</strong>
-              <UnInput name="age" />
-            </Label>
-            <Label>
-              <strong>Weight (in kg)</strong>
-              <UnInput name="weight" />
-            </Label>
-            <Label>
-              <strong>Height</strong>
-              <UnInput name="height" />
-            </Label>
-          </aside>
+          <Input label="Full name" name="name" />
+          <Input label="E-mail address" name="email" />
+          <div>
+            <Input label="Age" name="age" />
+            <Input label="Weight (in kg)" name="weight" />
+            <Input label="Height" name="height" />
+          </div>
         </StyleForm>
       </UnForm>
     </Container>
   );
 }
-
-Edit.propTypes = {
-  match: PropTypes.number.isRequired,
-};

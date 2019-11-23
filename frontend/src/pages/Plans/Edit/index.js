@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import PropTypes from 'prop-types';
 import { MdDone, MdArrowBack } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -8,7 +7,9 @@ import * as Yup from 'yup';
 import api from '~/services/api';
 import history from '~/services/history';
 import Button from '~/components/Button';
-import { Container, Top, UnForm, UnInput, Label, StyleForm } from './styles';
+import Input from '~/components/Input';
+
+import { Container, Top, UnForm, StyleForm } from './styles';
 
 const schema = Yup.object().shape({
   title: Yup.string().required(),
@@ -90,34 +91,22 @@ export default function Edit({ match }) {
         </Top>
 
         <StyleForm>
-          <strong>Title</strong>
-          <UnInput name="title" />
-          <aside>
-            <Label>
-              <strong>Duration (in months)</strong>
-              <UnInput
-                name="duration"
-                onChange={e => setPlanDuration(e.target.value)}
-              />
-            </Label>
-            <Label>
-              <strong>Monthly payment</strong>
-              <UnInput
-                name="price"
-                onChange={e => setPlanPrice(e.target.value)}
-              />
-            </Label>
-            <Label>
-              <strong>Total price</strong>
-              <UnInput name="total" value={total} disabled />
-            </Label>
-          </aside>
+          <Input label="Title" name="title" />
+          <div>
+            <Input
+              label="Duration (in months)"
+              name="duration"
+              onChange={e => setPlanDuration(e.target.value)}
+            />
+            <Input
+              label="Monthly payment"
+              name="price"
+              onChange={e => setPlanPrice(e.target.value)}
+            />
+            <Input label="Total price" name="total" value={total} disabled />
+          </div>
         </StyleForm>
       </UnForm>
     </Container>
   );
 }
-
-Edit.propTypes = {
-  match: PropTypes.number.isRequired,
-};
