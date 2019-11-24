@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import NumberFormat from 'react-number-format';
 
 import { useField } from '@rocketseat/unform';
 import * as MaterialDesign from 'react-icons/md';
@@ -13,6 +14,7 @@ export default function Input({
   size,
   iconStyle,
   children,
+  thousandSeparator,
   ...rest
 }) {
   const ref = useRef(null);
@@ -34,15 +36,27 @@ export default function Input({
   return (
     <Label htmlFor={fieldName} icon={icon}>
       {error && <span>{error}</span>}
-
-      <input
-        name={fieldName}
-        ref={ref}
-        id={fieldName}
-        aria-label={fieldName}
-        defaultValue={defaultValue}
-        {...rest}
-      />
+      {thousandSeparator ? (
+        <NumberFormat
+          thousandSeparator={thousandSeparator}
+          prefix="R$ "
+          name={fieldName}
+          ref={ref}
+          id={fieldName}
+          aria-label={fieldName}
+          defaultValue={defaultValue}
+          {...rest}
+        />
+      ) : (
+        <input
+          name={fieldName}
+          ref={ref}
+          id={fieldName}
+          aria-label={fieldName}
+          defaultValue={defaultValue}
+          {...rest}
+        />
+      )}
       <span>{renderLabel}</span>
       {icon && <Icon size={size} style={iconStyle} />}
       {children}

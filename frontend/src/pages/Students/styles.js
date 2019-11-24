@@ -78,6 +78,20 @@ export const List = styled.table`
     :last-child {
       text-align: right;
     }
+
+    button {
+      font-size: 15px;
+      color: #4d85ee;
+      font-weight: 500;
+      background: none;
+      border: 0;
+      text-align: right;
+
+      + button {
+        color: #de3b3b;
+        margin-left: 24px;
+      }
+    }
   }
 
   span {
@@ -89,19 +103,5 @@ export const List = styled.table`
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-  }
-
-  button {
-    font-size: 15px;
-    color: #4d85ee;
-    font-weight: 500;
-    background: none;
-    border: 0;
-    text-align: right;
-
-    + button {
-      color: #de3b3b;
-      margin-left: 24px;
-    }
   }
 `;

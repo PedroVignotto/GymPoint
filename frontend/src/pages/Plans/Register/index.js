@@ -30,6 +30,7 @@ export default function Register() {
   const [planPrice, setPlanPrice] = useState(null);
 
   useEffect(() => {
+    console.tron.log(planDuration, planPrice);
     setTotal(planDuration * planPrice);
   }, [planDuration, planPrice]);
 
@@ -88,7 +89,13 @@ export default function Register() {
               name="price"
               onChange={e => setPlanPrice(e.target.value)}
             />
-            <Input label="Total price" name="total" value={total} disabled />
+            <Input
+              label="Total price"
+              thousandSeparator
+              name="total"
+              value={total}
+              disabled
+            />
           </div>
         </StyleForm>
       </UnForm>
