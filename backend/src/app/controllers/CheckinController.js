@@ -12,6 +12,7 @@ class CheckinController {
       where: {
         student_id: req.params.id,
       },
+      order: [['createdAt', 'DESC']],
       limit: 20,
       offset: (page - 1) * 20,
       include: [
