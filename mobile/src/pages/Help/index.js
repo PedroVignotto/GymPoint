@@ -11,6 +11,6 @@ export default function Help() {
 Help.navigationOptions = {
   tabBarLabel: 'Ask for help',
   tabBarIcon: ({ tintColor }) => (
-    <Icon name="live-help" size={20} color={tintColor} />
+    <Icon name="live-help" size={22} color={tintColor} />
   ),
 };

@@ -23,6 +23,7 @@ export default (signedIn = false) =>
               inactiveTintColor: '#999',
               style: {
                 backgroundColor: '#fff',
+                padding: 4,
               },
             },
           }

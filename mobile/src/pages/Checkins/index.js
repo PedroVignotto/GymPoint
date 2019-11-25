@@ -21,20 +21,20 @@ export default function Checkins() {
 
   const id = useSelector(state => state.auth.student.id);
 
+  async function loadCheckins() {
+    const response = await api.get(`students/${id}/checkins`);
+
+    const data = response.data.map(checkin => ({
+      ...checkin,
+      createdAt: formatDistance(parseISO(checkin.createdAt), new Date(), {
+        addSuffix: true,
+      }),
+    }));
+
+    setCheckins(data);
+  }
+
   useEffect(() => {
-    async function loadCheckins() {
-      const response = await api.get(`students/${id}/checkins`);
-
-      const data = response.data.map(checkin => ({
-        ...checkin,
-        createdAt: formatDistance(parseISO(checkin.createdAt), new Date(), {
-          addSuffix: true,
-        }),
-      }));
-
-      setCheckins(data);
-    }
-
     loadCheckins();
   }, []) //eslint-disable-line
 
@@ -42,18 +42,7 @@ export default function Checkins() {
     try {
       const response = await api.post(`students/${id}/checkins`);
 
-      const data = {
-        ...response.data,
-        createdAt: formatDistance(
-          parseISO(response.data.createdAt),
-          new Date(),
-          {
-            addSuffix: true,
-          }
-        ),
-      };
-
-      setCheckins([...checkins, data]);
+      setCheckins([...checkins, response.data]);
       Alert.alert('Success', 'Checkin performed');
     } catch (err) {
       Alert.alert('Error', 'There was an error checking in');
@@ -68,9 +57,9 @@ export default function Checkins() {
         <CheckInList
           data={checkins}
           keyExtractor={checkin => String(checkin.id)}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <Content>
-              <CheckInTitle>Checkin #{item.id}</CheckInTitle>
+              <CheckInTitle>Checkin #{checkins.length - index}</CheckInTitle>
               <CheckInDate>{item.createdAt}</CheckInDate>
             </Content>
           )}
@@ -83,6 +72,6 @@ export default function Checkins() {
 Checkins.navigationOptions = {
   tabBarLabel: 'Checkins',
   tabBarIcon: ({ tintColor }) => (
-    <Icon name="room" size={20} color={tintColor} />
+    <Icon name="room" size={22} color={tintColor} />
   ),
 };
