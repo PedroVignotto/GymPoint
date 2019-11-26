@@ -8,7 +8,6 @@ import api from '~/services/api';
 import DefaultLayout from '~/pages/_layouts';
 
 import {
-  Container,
   CheckInButton,
   CheckInList,
   Content,
@@ -40,31 +39,29 @@ export default function Checkins() {
 
   async function handleCheckIn() {
     try {
-      const response = await api.post(`students/${id}/checkins`);
+      await api.post(`students/${id}/checkins`);
 
-      setCheckins([...checkins, response.data]);
+      loadCheckins();
       Alert.alert('Success', 'Checkin performed');
     } catch (err) {
-      Alert.alert('Error', 'There was an error checking in');
+      Alert.alert('Error', err.response.data.error);
     }
   }
 
   return (
     <DefaultLayout>
-      <Container>
-        <CheckInButton onPress={handleCheckIn}>New checkin</CheckInButton>
+      <CheckInButton onPress={handleCheckIn}>New checkin</CheckInButton>
 
-        <CheckInList
-          data={checkins}
-          keyExtractor={checkin => String(checkin.id)}
-          renderItem={({ item, index }) => (
-            <Content>
-              <CheckInTitle>Checkin #{checkins.length - index}</CheckInTitle>
-              <CheckInDate>{item.createdAt}</CheckInDate>
-            </Content>
-          )}
-        />
-      </Container>
+      <CheckInList
+        data={checkins}
+        keyExtractor={checkin => String(checkin.id)}
+        renderItem={({ item, index }) => (
+          <Content>
+            <CheckInTitle>Checkin #{checkins.length - index}</CheckInTitle>
+            <CheckInDate>{item.createdAt}</CheckInDate>
+          </Content>
+        )}
+      />
     </DefaultLayout>
   );
 }

@@ -11,3 +11,8 @@ export const Logo = styled.Image`
   width: 184px;
   height: 24px;
 `;
+
+export const Back = styled.TouchableOpacity`
+  position: absolute;
+  left: 20px;
+`;

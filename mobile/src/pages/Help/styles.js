@@ -2,11 +2,6 @@ import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 import Button from '~/components/Button';
 
-export const Container = styled.SafeAreaView`
-  background: #f5f5f5;
-  padding: 24px;
-`;
-
 export const OrderButton = styled(Button)`
   margin-bottom: 16px;
 `;

@@ -7,7 +7,6 @@ import api from '~/services/api';
 import DefaultLayout from '~/pages/_layouts';
 
 import {
-  Container,
   OrderButton,
   OrderList,
   Content,
@@ -18,7 +17,7 @@ import {
   Question,
 } from './styles';
 
-export default function Help() {
+export default function Help({ navigation }) {
   const [helps, setHelps] = useState([]);
 
   const id = useSelector(state => state.auth.student.id);
@@ -43,42 +42,31 @@ export default function Help() {
 
   return (
     <DefaultLayout>
-      <Container>
-        <OrderButton onPress={() => {}}>
-          New requests for assistance
-        </OrderButton>
+      <OrderButton onPress={() => {}}>New requests for assistance</OrderButton>
 
-        <OrderList
-          data={helps}
-          keyExtractor={help => String(help.id)}
-          renderItem={({ item }) => (
-            <Content>
-              <Top>
-                <OrderStatus>
-                  <Icon
-                    name="check-circle"
-                    color={item.answer ? '#42CB59' : '#999'}
-                    size={18}
-                  />
-                  <Status answer={item.answer}>
-                    {item.answer ? 'Answered' : 'No reply'}
-                  </Status>
-                </OrderStatus>
-                <OrderDate>{item.createdAt}</OrderDate>
-              </Top>
+      <OrderList
+        data={helps}
+        keyExtractor={help => String(help.id)}
+        renderItem={({ item }) => (
+          <Content onPress={() => navigation.navigate('Answer', { item })}>
+            <Top>
+              <OrderStatus>
+                <Icon
+                  name="check-circle"
+                  color={item.answer ? '#42CB59' : '#999'}
+                  size={18}
+                />
+                <Status answer={item.answer}>
+                  {item.answer ? 'Answered' : 'No reply'}
+                </Status>
+              </OrderStatus>
+              <OrderDate>{item.createdAt}</OrderDate>
+            </Top>
 
-              <Question>{item.question}</Question>
-            </Content>
-          )}
-        />
-      </Container>
+            <Question>{item.question}</Question>
+          </Content>
+        )}
+      />
     </DefaultLayout>
   );
 }
-
-Help.navigationOptions = {
-  tabBarLabel: 'Ask for help',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon name="live-help" size={22} color={tintColor} />
-  ),
-};
