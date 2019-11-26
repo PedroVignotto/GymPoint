@@ -42,7 +42,9 @@ export default function Help({ navigation }) {
 
   return (
     <DefaultLayout>
-      <OrderButton onPress={() => {}}>New requests for assistance</OrderButton>
+      <OrderButton onPress={() => navigation.navigate('Question')}>
+        New requests for assistance
+      </OrderButton>
 
       <OrderList
         data={helps}
