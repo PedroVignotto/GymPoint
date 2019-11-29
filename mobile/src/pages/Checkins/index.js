@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Alert } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToastActionsCreators } from 'react-native-redux-toast';
 import { parseISO, formatDistance } from 'date-fns';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -16,6 +16,8 @@ import {
 } from './styles';
 
 export default function Checkins() {
+  const dispatch = useDispatch();
+
   const [checkins, setCheckins] = useState([]);
 
   const id = useSelector(state => state.auth.student.id);
@@ -42,9 +44,11 @@ export default function Checkins() {
       await api.post(`students/${id}/checkins`);
 
       loadCheckins();
-      Alert.alert('Success', 'Checkin performed');
+      dispatch(ToastActionsCreators.displayWarning('Checkin performed', 3000));
     } catch (err) {
-      Alert.alert('Error', err.response.data.error);
+      dispatch(
+        ToastActionsCreators.displayError(err.response.data.error, 3000)
+      );
     }
   }
 

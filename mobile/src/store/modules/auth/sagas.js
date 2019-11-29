@@ -1,4 +1,4 @@
-import { Alert } from 'react-native';
+import { ToastActionsCreators } from 'react-native-redux-toast';
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 
 import api from '~/services/api';
@@ -15,9 +15,11 @@ export function* signIn({ payload }) {
 
     yield put(signInSuccess(response.data));
   } catch (err) {
-    Alert.alert(
-      'Authentication failed',
-      'There was a login error, please check your data'
+    yield put(
+      ToastActionsCreators.displayError(
+        'There was a login error, please check your data',
+        3000
+      )
     );
     yield put(signFailure());
   }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToastActionsCreators } from 'react-native-redux-toast';
 
 import api from '~/services/api';
 
@@ -10,6 +10,8 @@ import Button from '~/components/Button';
 import { InputQuestion } from './styles';
 
 export default function Question({ navigation }) {
+  const dispatch = useDispatch();
+
   const [question, setQuestion] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -22,10 +24,14 @@ export default function Question({ navigation }) {
         question,
       });
 
-      Alert.alert('Success', 'Request for assistance sent');
+      dispatch(
+        ToastActionsCreators.displayWarning('Request for assistance sent', 3000)
+      );
       navigation.navigate('Help');
     } catch (err) {
-      Alert.alert('Error', err.response.data.error);
+      dispatch(
+        ToastActionsCreators.displayError(err.response.data.error, 3000)
+      );
     } finally {
       setLoading(false);
     }
