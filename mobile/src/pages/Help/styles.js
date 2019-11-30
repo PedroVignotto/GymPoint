@@ -8,7 +8,7 @@ export const OrderButton = styled(Button)`
 
 export const Loading = styled.ActivityIndicator.attrs({
   size: 'small',
-  color: '#666',
+  color: '#ee4d64',
 })``;
 
 export const OrderList = styled.FlatList.attrs({

@@ -8,7 +8,7 @@ export const Container = styled.SafeAreaView`
 
 export const Loading = styled.ActivityIndicator.attrs({
   size: 'small',
-  color: '#666',
+  color: '#ee4d64',
 })``;
 
 export const CheckInButton = styled(Button)`
