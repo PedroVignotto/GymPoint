@@ -3,7 +3,6 @@ import { toast } from 'react-toastify';
 import { format, addMonths } from 'date-fns';
 import { MdDone, MdArrowBack } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import * as Yup from 'yup';
 
 import api from '~/services/api';
 import history from '~/services/history';
@@ -17,16 +16,6 @@ import { formatPrice } from '~/util/format';
 
 import { Container, Top, UnForm, Label, StyleForm } from './styles';
 
-const schema = Yup.object().shape({
-  student: Yup.object()
-    .required('Select one student')
-    .typeError('Invalid value'),
-  plan: Yup.object()
-    .required('Select one plan')
-    .typeError('Invalid value'),
-  start_date: Yup.date().required('Start date is required'),
-});
-
 export default function Register() {
   const [newPlan, setNewPlan] = useState();
   const [startDate, setStartDate] = useState();
@@ -35,10 +24,10 @@ export default function Register() {
   const end_date = useMemo(() => {
     if (startDate && newPlan) {
       setTotal(formatPrice(newPlan.duration * newPlan.price));
-      return format(addMonths(startDate, newPlan.duration), 'MM/dd/yyyy');
+      return format(addMonths(startDate, newPlan.duration), 'dd/MM/yyyy');
     }
     return '';
-  }, [newPlan, startDate]);
+  }, [startDate, newPlan]);
 
   async function handleSubmit({ student, plan, start_date }) {
     try {
@@ -56,7 +45,7 @@ export default function Register() {
 
   return (
     <Container>
-      <UnForm onSubmit={handleSubmit} schema={schema}>
+      <UnForm onSubmit={handleSubmit}>
         <Top>
           <strong>Enrollment registration</strong>
           <div>

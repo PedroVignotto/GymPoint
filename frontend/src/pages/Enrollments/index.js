@@ -18,7 +18,7 @@ export default function Enrollments() {
     async function loadEnrollments() {
       const response = await api.get('enrollments');
 
-      const data = response.data.map(enrollment => ({
+      const data = response.data.enrollments.map(enrollment => ({
         ...enrollment,
         startDate: format(parseISO(enrollment.start_date), 'MMMM dd, yyyy'),
         endDate: format(parseISO(enrollment.end_date), 'MMMM dd, yyyy'),

@@ -19,7 +19,7 @@ export default function Students() {
       params: { q: search },
     });
 
-    setStudents(response.data);
+    setStudents(response.data.students);
   }
 
   useEffect(() => {

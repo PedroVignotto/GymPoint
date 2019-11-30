@@ -55,11 +55,10 @@ export const Modals = styled(Modal)`
 
     span {
       color: #e0042d;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 500;
       line-height: 1.3;
       width: 100%;
-      margin: 8px 0 4px;
       transform: none;
       animation: fadeIn 350ms ease-in-out 1;
 

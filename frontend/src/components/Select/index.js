@@ -21,7 +21,7 @@ export default function ReactSelect({ name, label, setChange }) {
       // eslint-disable-next-line no-inner-declarations
       async function loadPlans() {
         const response = await api.get('plans');
-        const plans = response.data.map(plan => ({
+        const plans = response.data.plans.map(plan => ({
           label: plan.title,
           value: plan.id,
           duration: plan.duration,
@@ -34,7 +34,7 @@ export default function ReactSelect({ name, label, setChange }) {
       // eslint-disable-next-line no-inner-declarations
       async function loadStudents() {
         const response = await api.get('students');
-        const students = response.data.map(student => ({
+        const students = response.data.students.map(student => ({
           label: student.name,
           value: student.id,
         }));
