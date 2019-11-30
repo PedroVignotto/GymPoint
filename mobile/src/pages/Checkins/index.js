@@ -13,26 +13,42 @@ import {
   Content,
   CheckInTitle,
   CheckInDate,
+  Loading,
 } from './styles';
 
 export default function Checkins() {
   const dispatch = useDispatch();
 
   const [checkins, setCheckins] = useState([]);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const id = useSelector(state => state.auth.student.id);
 
-  async function loadCheckins() {
-    const response = await api.get(`students/${id}/checkins`);
+  async function loadCheckins(pageNumber = page) {
+    if (total && pageNumber > total) return;
 
-    const data = response.data.map(checkin => ({
+    console.tron.log(pageNumber);
+    setLoading(true);
+
+    const response = await api.get(`students/${id}/checkins`, {
+      params: { page: pageNumber },
+    });
+
+    const data = response.data.checkins.map(checkin => ({
       ...checkin,
       createdAt: formatDistance(parseISO(checkin.createdAt), new Date(), {
         addSuffix: true,
       }),
     }));
 
-    setCheckins(data);
+    const { totalPage } = response.data;
+
+    setTotal(totalPage);
+    setPage(pageNumber + 1);
+    setCheckins(page > 1 ? [...checkins, ...data] : data);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -58,10 +74,13 @@ export default function Checkins() {
 
       <CheckInList
         data={checkins}
+        onEndReachedThreshold={0.1}
+        onEndReached={() => loadCheckins()}
+        ListFooterComponent={loading && <Loading />}
         keyExtractor={checkin => String(checkin.id)}
         renderItem={({ item, index }) => (
           <Content>
-            <CheckInTitle>Checkin #{checkins.length - index}</CheckInTitle>
+            <CheckInTitle>Checkin #{index + 1}</CheckInTitle>
             <CheckInDate>{item.createdAt}</CheckInDate>
           </Content>
         )}

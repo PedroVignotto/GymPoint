@@ -15,24 +15,39 @@ import {
   Status,
   OrderDate,
   Question,
+  Loading,
 } from './styles';
 
 export default function Help({ navigation }) {
   const [helps, setHelps] = useState([]);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const id = useSelector(state => state.auth.student.id);
 
-  async function loadHelp() {
-    const response = await api.get(`students/${id}/help-orders`);
+  async function loadHelp(pageNumber = page) {
+    if (total && pageNumber > total) return;
 
-    const data = response.data.map(help => ({
+    setLoading(true);
+
+    const response = await api.get(`students/${id}/help-orders`, {
+      params: { page: pageNumber },
+    });
+
+    const data = response.data.order.map(help => ({
       ...help,
       createdAt: formatDistance(parseISO(help.created_at), new Date(), {
         addSuffix: true,
       }),
     }));
 
-    setHelps(data);
+    const { totalPage } = response.data;
+
+    setTotal(totalPage);
+    setPage(pageNumber + 1);
+    setHelps(page > 1 ? [...helps, ...data] : data);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -48,6 +63,9 @@ export default function Help({ navigation }) {
 
       <OrderList
         data={helps}
+        onEndReachedThreshold={0.1}
+        onEndReached={() => loadHelp()}
+        ListFooterComponent={loading && <Loading />}
         keyExtractor={help => String(help.id)}
         renderItem={({ item }) => (
           <Content onPress={() => navigation.navigate('Answer', { item })}>

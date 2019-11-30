@@ -6,6 +6,11 @@ export const Container = styled.SafeAreaView`
   padding: 24px;
 `;
 
+export const Loading = styled.ActivityIndicator.attrs({
+  size: 'small',
+  color: '#666',
+})``;
+
 export const CheckInButton = styled(Button)`
   margin-bottom: 16px;
 `;

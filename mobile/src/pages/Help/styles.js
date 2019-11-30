@@ -6,6 +6,11 @@ export const OrderButton = styled(Button)`
   margin-bottom: 16px;
 `;
 
+export const Loading = styled.ActivityIndicator.attrs({
+  size: 'small',
+  color: '#666',
+})``;
+
 export const OrderList = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: { paddingBottom: 100 },
