@@ -8,13 +8,13 @@ class CheckinController {
   async index(req, res) {
     const { page = 1 } = req.query;
 
-    const checkins = await Checkin.findAll({
+    const checkins = await Checkin.findAndCountAll({
       where: {
         student_id: req.params.id,
       },
       order: [['createdAt', 'DESC']],
-      limit: 20,
-      offset: (page - 1) * 20,
+      limit: 10,
+      offset: (page - 1) * 10,
       include: [
         {
           model: Student,
@@ -24,7 +24,9 @@ class CheckinController {
       ],
     });
 
-    return res.json(checkins);
+    const totalPage = Math.ceil(checkins.count / 10);
+
+    return res.json({ checkins: checkins.rows, totalPage });
   }
 
   async store(req, res) {

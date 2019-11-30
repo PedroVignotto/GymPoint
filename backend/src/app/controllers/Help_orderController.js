@@ -10,15 +10,17 @@ class Help_orderController {
     const { page = 1 } = req.query;
     const { id } = req.params;
 
-    const enrollments = await Help_order.findAll({
+    const order = await Help_order.findAndCountAll({
       where: { student_id: id },
       attributes: ['id', 'question', 'answer', 'answer_at', 'created_at'],
       order: ['id'],
-      limit: 20,
-      offset: (page - 1) * 20,
+      limit: 10,
+      offset: (page - 1) * 10,
     });
 
-    return res.json(enrollments);
+    const totalPage = Math.ceil(order.count / 10);
+
+    return res.json({ order: order.rows, totalPage });
   }
 
   async store(req, res) {

@@ -8,14 +8,16 @@ class StudentController {
 
     const where = q ? { name: { [Op.iLike]: `%${q}%` } } : {};
 
-    const students = await Student.findAll({
+    const students = await Student.findAndCountAll({
       where,
       order: ['name'],
       limit: 20,
       offset: (page - 1) * 20,
     });
 
-    return res.json(students);
+    const totalPage = Math.ceil(students.count / 20);
+
+    return res.json({ students: students.rows, totalPage });
   }
 
   async show(req, res) {

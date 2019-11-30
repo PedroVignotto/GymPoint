@@ -5,7 +5,7 @@ class AnswerController {
   async index(req, res) {
     const { page = 1 } = req.query;
 
-    const enrollments = await Help_order.findAll({
+    const order = await Help_order.findAndCountAll({
       where: { answer: null },
       attributes: ['id', 'question', 'created_at'],
       order: ['created_at'],
@@ -20,7 +20,9 @@ class AnswerController {
       ],
     });
 
-    return res.json(enrollments);
+    const totalPage = Math.ceil(order.count / 20);
+
+    return res.json({ order: order.rows, totalPage });
   }
 }
 

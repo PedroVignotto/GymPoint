@@ -5,7 +5,7 @@ class PlanController {
   async index(req, res) {
     const { page = 1 } = req.query;
 
-    const plans = await Plan.findAll({
+    const plans = await Plan.findAndCountAll({
       limit: 20,
       order: ['title'],
       offset: (page - 1) * 20,
@@ -16,7 +16,9 @@ class PlanController {
       return res.json({ alert: 'You have no registered plans' });
     }
 
-    return res.json(plans);
+    const totalPage = Math.ceil(plans.count / 20);
+
+    return res.json({ plans: plans.rows, totalPage });
   }
 
   async show(req, res) {

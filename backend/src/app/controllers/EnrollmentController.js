@@ -10,7 +10,7 @@ class EnrollmentController {
   async index(req, res) {
     const { page = 1 } = req.query;
 
-    const enrollments = await Enrollment.findAll({
+    const enrollments = await Enrollment.findAndCountAll({
       attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
       order: ['id'],
       limit: 20,
@@ -29,7 +29,9 @@ class EnrollmentController {
       ],
     });
 
-    return res.json(enrollments);
+    const totalPage = Math.ceil(enrollments.count / 20);
+
+    return res.json({ enrollments: enrollments.rows, totalPage });
   }
 
   async show(req, res) {
