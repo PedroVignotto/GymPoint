@@ -8,7 +8,7 @@ class AnswerController {
     const order = await Help_order.findAndCountAll({
       where: { answer: null },
       attributes: ['id', 'question', 'created_at'],
-      order: ['created_at'],
+      order: [['created_at', 'DESC']],
       limit: 20,
       offset: (page - 1) * 20,
       include: [

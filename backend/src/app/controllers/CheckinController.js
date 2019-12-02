@@ -1,7 +1,6 @@
 import { Op } from 'sequelize';
 import { startOfWeek, endOfWeek } from 'date-fns';
 import Checkin from '../models/Checkin';
-import Student from '../models/Student';
 import Enrollment from '../models/Enrollment';
 
 class CheckinController {
@@ -12,16 +11,10 @@ class CheckinController {
       where: {
         student_id: req.params.id,
       },
-      order: [['createdAt', 'DESC']],
+      attributes: ['id', 'created_at'],
+      order: [['created_at', 'DESC']],
       limit: 10,
       offset: (page - 1) * 10,
-      include: [
-        {
-          model: Student,
-          as: 'student',
-          attributes: ['id', 'name', 'email'],
-        },
-      ],
     });
 
     const totalPage = Math.ceil(checkins.count / 10);

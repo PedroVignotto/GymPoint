@@ -13,7 +13,7 @@ class Help_orderController {
     const order = await Help_order.findAndCountAll({
       where: { student_id: id },
       attributes: ['id', 'question', 'answer', 'answer_at', 'created_at'],
-      order: ['id'],
+      order: [['created_at', 'DESC']],
       limit: 10,
       offset: (page - 1) * 10,
     });
@@ -29,7 +29,7 @@ class Help_orderController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validation fails' });
+      return res.status(400).json({ error: 'Question is required' });
     }
 
     const { question } = req.body;
