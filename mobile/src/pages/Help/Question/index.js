@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastActionsCreators } from 'react-native-redux-toast';
 
@@ -29,9 +30,7 @@ export default function Question({ navigation }) {
       );
       navigation.navigate('Help');
     } catch (err) {
-      dispatch(
-        ToastActionsCreators.displayError(err.response.data.error, 3000)
-      );
+      Alert.alert('Error', err.response.data.error);
     } finally {
       setLoading(false);
     }
