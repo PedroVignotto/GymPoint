@@ -15,12 +15,7 @@ export function* signIn({ payload }) {
 
     yield put(signInSuccess(response.data));
   } catch (err) {
-    yield put(
-      ToastActionsCreators.displayError(
-        'There was a login error, please check your data',
-        3000
-      )
-    );
+    yield put(ToastActionsCreators.displayError(err.response.data.error, 3000));
     yield put(signFailure());
   }
 }

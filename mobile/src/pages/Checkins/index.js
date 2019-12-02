@@ -38,7 +38,7 @@ export default function Checkins() {
 
     const data = response.data.checkins.map(checkin => ({
       ...checkin,
-      createdAt: formatDistance(parseISO(checkin.createdAt), new Date(), {
+      createdAt: formatDistance(parseISO(checkin.created_at), new Date(), {
         addSuffix: true,
       }),
     }));
