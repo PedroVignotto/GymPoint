@@ -5,11 +5,15 @@ import { useField } from '@rocketseat/unform';
 
 import api from '~/services/api';
 
+import { Label } from './styles';
+
 // eslint-disable-next-line react/prop-types
 export default function ReactSelect({ name, label, setChange }) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
   const [options, setOptions] = useState();
+
+  const renderLabel = label || name;
 
   function parseSelectValue(selectRef) {
     const selectedValue = selectRef.state.value;
@@ -68,22 +72,24 @@ export default function ReactSelect({ name, label, setChange }) {
 
   return (
     <>
-      <Select
-        name={fieldName}
-        aria-label={fieldName}
-        defaultValue={defaultValue}
-        label={label}
-        options={options}
-        placeholder={name === 'plan' ? 'Select plan' : 'Search student'}
-        onChange={
-          name === 'plan'
-            ? plan => handleOnChangePlan(plan)
-            : student => handleOnChangeStudent(student)
-        }
-        ref={ref}
-      />
-
-      {error && <span>{error}</span>}
+      <Label htmlFor={fieldName}>
+        {error && <span>{error}</span>}
+        <Select
+          name={fieldName}
+          aria-label={fieldName}
+          defaultValue={defaultValue}
+          label={label}
+          options={options}
+          placeholder={name === 'plan' ? 'Select plan' : 'Search student'}
+          onChange={
+            name === 'plan'
+              ? plan => handleOnChangePlan(plan)
+              : student => handleOnChangeStudent(student)
+          }
+          ref={ref}
+        />
+        <strong>{renderLabel}</strong>
+      </Label>
     </>
   );
 }

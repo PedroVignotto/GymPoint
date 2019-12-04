@@ -4,12 +4,14 @@ import { useField } from '@rocketseat/unform';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { Picker } from './styles';
+import { Picker, Label } from './styles';
 
-export default function DatePicker({ name, setChange, getChange }) {
+export default function DatePicker({ name, label, setChange, getChange }) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
   const [selected, setSelected] = useState(defaultValue);
+
+  const renderLabel = label || name;
 
   useEffect(() => {
     registerField({
@@ -32,7 +34,8 @@ export default function DatePicker({ name, setChange, getChange }) {
   }
 
   return (
-    <>
+    <Label htmlFor={fieldName}>
+      {error && <span>{error}</span>}
       <Picker
         name={fieldName}
         selected={selected}
@@ -40,8 +43,8 @@ export default function DatePicker({ name, setChange, getChange }) {
         onChange={date => handleOnChange(date)}
         ref={ref}
       />
-      {error && <span>{error}</span>}
-    </>
+      <strong>{renderLabel}</strong>
+    </Label>
   );
 }
 

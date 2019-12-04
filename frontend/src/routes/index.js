@@ -13,7 +13,7 @@ import RegisterPlan from '~/pages/Plans/Register';
 import EditPlan from '~/pages/Plans/Edit';
 
 import Enrollments from '~/pages/Enrollments';
-import RegisterEnrollments from '~/pages/Enrollments/Register';
+import RegisterEnrollment from '~/pages/Enrollments/Register';
 
 import Assistances from '~/pages/Assistances';
 import Error404 from '~/pages/_Error404';
@@ -34,7 +34,7 @@ export default function Routes() {
       <Route path="/enrollments" exact component={Enrollments} isPrivate />
       <Route
         path="/enrollments/register"
-        component={RegisterEnrollments}
+        component={RegisterEnrollment}
         isPrivate
       />
 

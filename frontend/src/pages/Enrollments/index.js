@@ -95,7 +95,9 @@ export default function Enrollments() {
                 </Active>
               </td>
               <td>
-                <button type="button">edit</button>
+                <button type="button" onClick={() => {}}>
+                  edit
+                </button>
                 <button
                   type="button"
                   onClick={() => handleDelete(enrollment.id)}

@@ -41,32 +41,18 @@ export const StyleForm = styled.section`
   background: #fff;
   padding: 30px 40px;
   border-radius: 4px;
-  strong {
-    align-self: flex-start;
-    color: #444;
-    font-weight: 500;
-  }
-  div.css-yk16xz-control {
-    background: none;
-    height: 40px;
-    width: 100%;
-    margin: 8px 0 10px;
-    option {
-      color: #333;
-      font-size: 14px;
-    }
-  }
-  div.css-1pahdxg-control {
-    box-shadow: none;
-    border-color: #ddd;
-    :hover {
-      border-color: #ddd;
-    }
-  }
-`;
 
-export const Label = styled.div`
-  + div {
-    margin-left: 40px;
+  aside {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    label {
+      flex: 1;
+
+      + label {
+        margin-left: 32px;
+      }
+    }
   }
 `;

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import ReactDatePicker from 'react-datepicker';
 
 export const Label = styled.label`
   display: flex;
@@ -30,19 +29,16 @@ export const Label = styled.label`
     }
   }
 
+  div.css-1pahdxg-control {
+    box-shadow: none;
+    border-color: #ddd;
+    margin: 0 !important;
+  }
+
   strong {
     font-weight: 700;
     color: #444;
     margin-bottom: 8px;
     text-transform: uppercase;
   }
-`;
-
-export const Picker = styled(ReactDatePicker)`
-  background: none;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  height: 40px;
-  width: 100%;
-  padding: 0 15px;
 `;

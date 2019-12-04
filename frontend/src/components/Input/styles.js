@@ -47,8 +47,10 @@ export const Label = styled.label`
     }
 
     + span {
-      font-weight: 500;
+      font-weight: 700;
+      color: #444;
       margin-bottom: 8px;
+      text-transform: uppercase;
     }
   }
 `;

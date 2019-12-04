@@ -93,15 +93,4 @@ export const List = styled.table`
       }
     }
   }
-
-  span {
-    width: 20px;
-    height: 20px;
-    background: #42cb59;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-  }
 `;

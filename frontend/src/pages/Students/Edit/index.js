@@ -12,7 +12,7 @@ import Input from '~/components/Input';
 import { Container, Top, UnForm, StyleForm } from './styles';
 
 const schema = Yup.object().shape({
-  name: Yup.string().required(),
+  name: Yup.string().required('Name is required'),
   email: Yup.string()
     .email('Invalid e-mail address')
     .required('E-mail is required'),
