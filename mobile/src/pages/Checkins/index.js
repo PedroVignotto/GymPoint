@@ -29,7 +29,6 @@ export default function Checkins() {
   async function loadCheckins(pageNumber = page) {
     if (total && pageNumber > total) return;
 
-    console.tron.log(pageNumber);
     setLoading(true);
 
     const response = await api.get(`students/${id}/checkins`, {
@@ -57,9 +56,22 @@ export default function Checkins() {
 
   async function handleCheckIn() {
     try {
-      await api.post(`students/${id}/checkins`);
+      const response = await api.post(`students/${id}/checkins`);
 
-      loadCheckins();
+      const data = [
+        {
+          id: response.data.id,
+          createdAt: formatDistance(
+            parseISO(response.data.createdAt),
+            new Date(),
+            {
+              addSuffix: true,
+            }
+          ),
+        },
+      ];
+
+      setCheckins([...data, ...checkins]);
       dispatch(ToastActionsCreators.displayWarning('Checkin performed', 3000));
     } catch (err) {
       dispatch(
