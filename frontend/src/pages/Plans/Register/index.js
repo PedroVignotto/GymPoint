@@ -12,7 +12,7 @@ import Input from '~/components/Input';
 import { Container, Top, UnForm, StyleForm } from './styles';
 
 const schema = Yup.object().shape({
-  title: Yup.string().required(),
+  title: Yup.string().required('Plan is required'),
   duration: Yup.number('Duration must be a number')
     .typeError('Invalid value')
     .integer('Duration must be an integer')

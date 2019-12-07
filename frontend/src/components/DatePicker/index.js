@@ -6,7 +6,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import { Picker, Label } from './styles';
 
-export default function DatePicker({ name, label, setChange, getChange }) {
+export default function DatePicker({
+  name,
+  label,
+  setChange,
+  getChange,
+  ...rest
+}) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
   const [selected, setSelected] = useState(defaultValue);
@@ -42,6 +48,7 @@ export default function DatePicker({ name, label, setChange, getChange }) {
         autoComplete="off"
         onChange={date => handleOnChange(date)}
         ref={ref}
+        {...rest}
       />
       <strong>{renderLabel}</strong>
     </Label>

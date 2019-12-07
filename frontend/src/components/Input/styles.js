@@ -27,10 +27,6 @@ export const Label = styled.label`
         opacity: 1;
       }
     }
-
-    + input {
-      border-color: #e0042d;
-    }
   }
 
   > input {

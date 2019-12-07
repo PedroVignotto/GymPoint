@@ -14,6 +14,7 @@ import EditPlan from '~/pages/Plans/Edit';
 
 import Enrollments from '~/pages/Enrollments';
 import RegisterEnrollment from '~/pages/Enrollments/Register';
+import EditEnrollment from '~/pages/Enrollments/Edit';
 
 import Assistances from '~/pages/Assistances';
 import Error404 from '~/pages/_Error404';
@@ -35,6 +36,11 @@ export default function Routes() {
       <Route
         path="/enrollments/register"
         component={RegisterEnrollment}
+        isPrivate
+      />
+      <Route
+        path="/enrollments/edit/:id"
+        component={EditEnrollment}
         isPrivate
       />
 

@@ -8,7 +8,7 @@ import api from '~/services/api';
 import { Label } from './styles';
 
 // eslint-disable-next-line react/prop-types
-export default function ReactSelect({ name, label, setChange }) {
+export default function ReactSelect({ name, label, setChange, ...rest }) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
   const [options, setOptions] = useState();
@@ -87,6 +87,7 @@ export default function ReactSelect({ name, label, setChange }) {
               : student => handleOnChangeStudent(student)
           }
           ref={ref}
+          {...rest}
         />
         <strong>{renderLabel}</strong>
       </Label>

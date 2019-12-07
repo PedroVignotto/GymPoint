@@ -66,7 +66,7 @@ export default function Edit({ match }) {
     <Container>
       <UnForm initialData={student} onSubmit={handleSubmit} schema={schema}>
         <Top>
-          <strong>Student Edition</strong>
+          <strong>Student edition</strong>
           <div>
             <Link to="/students">
               <Button
