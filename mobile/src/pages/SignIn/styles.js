@@ -4,7 +4,9 @@ import styled from 'styled-components/native';
 import Input from '~/components/Input';
 import Button from '~/components/Button';
 
-export const Container = styled.KeyboardAvoidingView.attrs({
+export const Container = styled.TouchableWithoutFeedback``;
+
+export const Content = styled.KeyboardAvoidingView.attrs({
   enabled: Platform.OS === 'ios',
   behavior: 'padding',
 })`
