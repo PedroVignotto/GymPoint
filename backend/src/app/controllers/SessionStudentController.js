@@ -24,7 +24,7 @@ class SessionStudentController {
 
     const enrollment = await Enrollment.findOne({ where: { student_id: id } });
 
-    if (!enrollment) {
+    if (!enrollment || !enrollment.active) {
       return res
         .status(401)
         .json({ error: 'Only enrollment student can login' });

@@ -14,6 +14,7 @@ class EnrollmentMail {
       subject: 'Successful Enrollment',
       template: 'enrollment',
       context: {
+        login: studentExists.id,
         student: studentExists.name,
         planName: planExists.title,
         planDuration: planExists.duration,
