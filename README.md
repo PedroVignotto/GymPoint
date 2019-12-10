@@ -65,8 +65,6 @@ Você pode baixar o layout do projeto no formato `.sketch` acessando a pasta `.g
 
 Para abrir o arquivo no formato `.sketch` em qualquer sistema operacional utilize a ferramenta [Zeplin](https://zeplin.io).
 
-Caso esteja no Linux ou não vá usar o Zeplin existe uma pasta chamada `Gympoint WEB` e `GymPoint Mobile` na pasta `.github/layouts`, abra e acesse o arquivo `index.html` para visualizar as telas da aplicação.
-
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
