@@ -21,13 +21,12 @@
 1. Faça um clone desse repositório;
 2. Entre na pasta rodando `cd GymPoint`;
 
-
 ### Backend
 
 3. Entre na pasta rodando `cd backend`;
 4. Rode `yarn` para instalar as dependências;
-5. Crie um banco de dados `PostgreSQL` com o nome de `gympoint`;
-6. Crie um banco de dados `Redis`;
+5. Crie e execute um banco de dados `Postgres` com o nome de `gympoint`;
+6. Crie e execute um banco de dados `Redis`;
 7. Renomeie o arquivo `.env.example` para `.env`;
 8. Coloque as suas credenciais dentro do `.env`;
 8. Rode `yarn sequelize db:seed:all` para executar as seeds;
@@ -54,6 +53,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Node.js](https://nodejs.org/en/)
 - [React](https://reactjs.org)
 - [React Native](https://facebook.github.io/react-native/)
+- [Redux](https://redux.js.org/)
 
 ## 💻 Projeto
 
