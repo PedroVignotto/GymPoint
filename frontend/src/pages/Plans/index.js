@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MdAdd } from 'react-icons/md';
 import { toast } from 'react-toastify';
-import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 
 import history from '~/services/history';
@@ -31,21 +30,19 @@ export default function Plans() {
 
   async function handleDelete(id) {
     try {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        showCancelButton: true,
-        confirmButtonColor: '#42cb59',
-        cancelButtonColor: '#ee4d64',
-        confirmButtonText: 'Yes, delete it!',
-      }).then(result => {
-        if (result.value) {
+      try {
+        // eslint-disable-next-line no-restricted-globals
+        const delet = confirm('Are you sure?');
+
+        if (delet) {
           api.delete(`plans/${id}`);
 
           setPlans(plans.filter(plan => plan.id !== id));
           toast.success('Plan successfully deleted');
         }
-      });
+      } catch (err) {
+        toast.error('Something went wrong try again');
+      }
     } catch (err) {
       toast.error('Something went wrong try again');
     }

@@ -3,7 +3,6 @@ import { MdAdd, MdDone } from 'react-icons/md';
 import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Swal from 'sweetalert2';
 
 import api from '~/services/api';
 import history from '~/services/history';
@@ -32,23 +31,15 @@ export default function Enrollments() {
 
   async function handleDelete(id) {
     try {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        showCancelButton: true,
-        confirmButtonColor: '#42cb59',
-        cancelButtonColor: '#ee4d64',
-        confirmButtonText: 'Yes, delete it!',
-      }).then(result => {
-        if (result.value) {
-          api.delete(`enrollments/${id}`);
+      // eslint-disable-next-line no-restricted-globals
+      const delet = confirm('Are you sure?');
 
-          setEnrollments(
-            enrollments.filter(enrollment => enrollment.id !== id)
-          );
-          toast.success('Enrollment successfully deleted');
-        }
-      });
+      if (delet) {
+        api.delete(`enrollments/${id}`);
+
+        setEnrollments(enrollments.filter(enrollment => enrollment.id !== id));
+        toast.success('Enrollment successfully deleted');
+      }
     } catch (err) {
       toast.error(err.response.data.error);
     }
