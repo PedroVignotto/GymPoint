@@ -41,10 +41,6 @@ export default function Students() {
     }
   }
 
-  function handleSearch(e) {
-    setSearch(e.target.value);
-  }
-
   return (
     <>
       <Top>
@@ -68,8 +64,8 @@ export default function Students() {
               name="search"
               placeholder="Search student"
               autoComplete="off"
-              onKeyDown={event => event.key === 'Enter' && loadStudents()}
-              onChange={handleSearch}
+              onKeyDown={e => e.key === 'Enter' && loadStudents()}
+              onChange={e => setSearch(e.target.value)}
             />
           </span>
         </div>
