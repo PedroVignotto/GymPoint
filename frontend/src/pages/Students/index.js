@@ -6,19 +6,23 @@ import { Link } from 'react-router-dom';
 import history from '~/services/history';
 import api from '~/services/api';
 import Button from '~/components/Button';
+import Loading from '~/components/Loading';
 
 import { Top, List } from './styles';
 
 export default function Students() {
   const [students, setStudents] = useState([]);
-  const [search, setSearch] = useState([]);
+  const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(false);
 
   async function loadStudents() {
+    setLoading(true);
     const response = await api.get('students', {
       params: { q: search },
     });
 
     setStudents(response.data);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -71,35 +75,42 @@ export default function Students() {
         </div>
       </Top>
 
-      <List>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>e-mail</th>
-            <th>age</th>
-          </tr>
-        </thead>
-        {students.map(student => (
-          <tbody key={student.id}>
+      {loading ? (
+        <Loading />
+      ) : (
+        <List>
+          <thead>
             <tr>
-              <td>{student.name}</td>
-              <td>{student.email}</td>
-              <td>{student.age}</td>
-              <td>
-                <button
-                  type="button"
-                  onClick={() => history.push(`/students/edit/${student.id}`)}
-                >
-                  edit
-                </button>
-                <button type="button" onClick={() => handleDelete(student.id)}>
-                  delete
-                </button>
-              </td>
+              <th>Name</th>
+              <th>e-mail</th>
+              <th>age</th>
             </tr>
-          </tbody>
-        ))}
-      </List>
+          </thead>
+          {students.map(student => (
+            <tbody key={student.id}>
+              <tr>
+                <td>{student.name}</td>
+                <td>{student.email}</td>
+                <td>{student.age}</td>
+                <td>
+                  <button
+                    type="button"
+                    onClick={() => history.push(`/students/edit/${student.id}`)}
+                  >
+                    edit
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(student.id)}
+                  >
+                    delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          ))}
+        </List>
+      )}
     </>
   );
 }

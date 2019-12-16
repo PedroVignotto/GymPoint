@@ -30,7 +30,6 @@ export default function Register() {
   const [planPrice, setPlanPrice] = useState(null);
 
   useEffect(() => {
-    console.tron.log(planDuration, planPrice);
     setTotal(planDuration * planPrice);
   }, [planDuration, planPrice]);
 

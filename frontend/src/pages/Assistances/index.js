@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import api from '~/services/api';
 
 import Button from '~/components/Button';
+import Loading from '~/components/Loading';
 
 import { Top, List, Modals } from './styles';
 
@@ -19,9 +20,11 @@ export default function Assistances() {
   const [assistances, setAssistances] = useState([]);
   const [question, setQuestion] = useState([]);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function loadAssistances() {
+      setLoading(true);
       const response = await api.get('help-orders/answers');
 
       const data = response.data.map(assistance => ({
@@ -32,6 +35,7 @@ export default function Assistances() {
       }));
 
       setAssistances(data);
+      setLoading(false);
     }
 
     loadAssistances();
@@ -62,30 +66,34 @@ export default function Assistances() {
         <strong>Requests for assistance</strong>
       </Top>
 
-      <List>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Student</th>
-          </tr>
-        </thead>
-        {assistances.map(assistance => (
-          <tbody key={assistance.id}>
+      {loading ? (
+        <Loading />
+      ) : (
+        <List>
+          <thead>
             <tr>
-              <td>{assistance.createdAt}</td>
-              <td>{assistance.student.name}</td>
-              <td>
-                <button
-                  type="button"
-                  onClick={() => handleOpenModal(assistance)}
-                >
-                  reply
-                </button>
-              </td>
+              <th>Date</th>
+              <th>Student</th>
             </tr>
-          </tbody>
-        ))}
-      </List>
+          </thead>
+          {assistances.map(assistance => (
+            <tbody key={assistance.id}>
+              <tr>
+                <td>{assistance.createdAt}</td>
+                <td>{assistance.student.name}</td>
+                <td>
+                  <button
+                    type="button"
+                    onClick={() => handleOpenModal(assistance)}
+                  >
+                    reply
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          ))}
+        </List>
+      )}
 
       <Modals show={open} onHide={() => setOpen(false)} animation>
         <Modals.Body>

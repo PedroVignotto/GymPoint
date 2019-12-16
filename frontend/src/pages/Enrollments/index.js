@@ -7,14 +7,17 @@ import { toast } from 'react-toastify';
 import api from '~/services/api';
 import history from '~/services/history';
 import Button from '~/components/Button';
+import Loading from '~/components/Loading';
 
 import { Top, List, Active } from './styles';
 
 export default function Enrollments() {
   const [enrollments, setEnrollments] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function loadEnrollments() {
+      setLoading(true);
       const response = await api.get('enrollments');
 
       const data = response.data.map(enrollment => ({
@@ -24,6 +27,7 @@ export default function Enrollments() {
       }));
 
       setEnrollments(data);
+      setLoading(false);
     }
 
     loadEnrollments();
@@ -63,48 +67,52 @@ export default function Enrollments() {
         </div>
       </Top>
 
-      <List>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>e-mail</th>
-            <th>start</th>
-            <th>end</th>
-            <th>active</th>
-          </tr>
-        </thead>
-        {enrollments.map(enrollment => (
-          <tbody key={enrollment.id}>
+      {loading ? (
+        <Loading />
+      ) : (
+        <List>
+          <thead>
             <tr>
-              <td>{enrollment.student.name}</td>
-              <td>{enrollment.plan.title}</td>
-              <td>{enrollment.startDate}</td>
-              <td>{enrollment.endDate}</td>
-              <td>
-                <Active active={enrollment.active}>
-                  <MdDone size={16} color="#fff" />
-                </Active>
-              </td>
-              <td>
-                <button
-                  type="button"
-                  onClick={() =>
-                    history.push(`/enrollments/edit/${enrollment.id}`)
-                  }
-                >
-                  edit
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleDelete(enrollment.id)}
-                >
-                  delete
-                </button>
-              </td>
+              <th>Name</th>
+              <th>e-mail</th>
+              <th>start</th>
+              <th>end</th>
+              <th>active</th>
             </tr>
-          </tbody>
-        ))}
-      </List>
+          </thead>
+          {enrollments.map(enrollment => (
+            <tbody key={enrollment.id}>
+              <tr>
+                <td>{enrollment.student.name}</td>
+                <td>{enrollment.plan.title}</td>
+                <td>{enrollment.startDate}</td>
+                <td>{enrollment.endDate}</td>
+                <td>
+                  <Active active={enrollment.active}>
+                    <MdDone size={16} color="#fff" />
+                  </Active>
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      history.push(`/enrollments/edit/${enrollment.id}`)
+                    }
+                  >
+                    edit
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(enrollment.id)}
+                  >
+                    delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          ))}
+        </List>
+      )}
     </>
   );
 }

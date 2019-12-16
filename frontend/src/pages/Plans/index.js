@@ -7,14 +7,17 @@ import history from '~/services/history';
 import api from '~/services/api';
 import { formatPrice } from '~/util/format';
 import Button from '~/components/Button';
+import Loading from '~/components/Loading';
 
 import { Top, List } from './styles';
 
 export default function Plans() {
   const [plans, setPlans] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function loadPlans() {
+      setLoading(true);
       const response = await api.get('plans');
 
       const data = response.data.map(plan => ({
@@ -23,6 +26,7 @@ export default function Plans() {
       }));
 
       setPlans(data);
+      setLoading(false);
     }
 
     loadPlans();
@@ -60,39 +64,43 @@ export default function Plans() {
         </Link>
       </Top>
 
-      <List>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Duration</th>
-            <th>Monthly payment</th>
-          </tr>
-        </thead>
-        {plans.map(plan => (
-          <tbody key={plan.id}>
+      {loading ? (
+        <Loading />
+      ) : (
+        <List>
+          <thead>
             <tr>
-              <td>{plan.title}</td>
-              <td>
-                {plan.duration === 1
-                  ? `${plan.duration} Month`
-                  : `${plan.duration} Months`}
-              </td>
-              <td>{plan.priceFormatted}</td>
-              <td>
-                <button
-                  type="button"
-                  onClick={() => history.push(`/plans/edit/${plan.id}`)}
-                >
-                  edit
-                </button>
-                <button type="button" onClick={() => handleDelete(plan.id)}>
-                  delete
-                </button>
-              </td>
+              <th>Title</th>
+              <th>Duration</th>
+              <th>Monthly payment</th>
             </tr>
-          </tbody>
-        ))}
-      </List>
+          </thead>
+          {plans.map(plan => (
+            <tbody key={plan.id}>
+              <tr>
+                <td>{plan.title}</td>
+                <td>
+                  {plan.duration === 1
+                    ? `${plan.duration} Month`
+                    : `${plan.duration} Months`}
+                </td>
+                <td>{plan.priceFormatted}</td>
+                <td>
+                  <button
+                    type="button"
+                    onClick={() => history.push(`/plans/edit/${plan.id}`)}
+                  >
+                    edit
+                  </button>
+                  <button type="button" onClick={() => handleDelete(plan.id)}>
+                    delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          ))}
+        </List>
+      )}
     </>
   );
 }
