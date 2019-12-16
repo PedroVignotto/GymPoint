@@ -30,18 +30,14 @@ export default function Plans() {
 
   async function handleDelete(id) {
     try {
-      try {
-        // eslint-disable-next-line no-restricted-globals
-        const delet = confirm('Are you sure?');
+      // eslint-disable-next-line no-restricted-globals
+      const delet = confirm('Are you sure?');
 
-        if (delet) {
-          api.delete(`plans/${id}`);
+      if (delet) {
+        api.delete(`plans/${id}`);
 
-          setPlans(plans.filter(plan => plan.id !== id));
-          toast.success('Plan successfully deleted');
-        }
-      } catch (err) {
-        toast.error('Something went wrong try again');
+        setPlans(plans.filter(plan => plan.id !== id));
+        toast.success('Plan successfully deleted');
       }
     } catch (err) {
       toast.error('Something went wrong try again');
