@@ -169,7 +169,7 @@ class EnrollmentController {
 
     await Enrollment.destroy({ where: { id } });
 
-    return res.status(200).json({ success: 'Enrollment has been deleted' });
+    return res.status(200).json();
   }
 }
 

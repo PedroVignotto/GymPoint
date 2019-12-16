@@ -112,7 +112,7 @@ class StudentController {
 
     await Student.destroy({ where: { id } });
 
-    return res.status(200).json({ success: 'Student has been deleted' });
+    return res.status(200).json();
   }
 }
 

@@ -8,10 +8,6 @@ class PlanController {
       attributes: ['id', 'title', 'duration', 'price'],
     });
 
-    if (!plans) {
-      return res.json({ alert: 'You have no registered plans' });
-    }
-
     return res.json(plans);
   }
 
@@ -100,7 +96,7 @@ class PlanController {
 
     await Plan.destroy({ where: { id } });
 
-    return res.status(200).json({ success: 'Plan has been deleted' });
+    return res.status(200).json();
   }
 }
 

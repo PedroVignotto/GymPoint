@@ -103,7 +103,13 @@ export default function Edit({ match }) {
               name="price"
               onChange={e => setPlanPrice(e.target.value)}
             />
-            <Input label="Total price" name="total" value={total} disabled />
+            <Input
+              label="Total price"
+              thousandSeparator
+              name="total"
+              value={total}
+              disabled
+            />
           </div>
         </StyleForm>
       </UnForm>
