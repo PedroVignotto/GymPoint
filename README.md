@@ -29,8 +29,8 @@
 6. Crie e execute um banco de dados `Redis`;
 7. Renomeie o arquivo `.env.example` para `.env`;
 8. Coloque as suas credenciais dentro do `.env`;
-8. Rode `yarn sequelize db:seed:all` para executar as seeds;
 9. Rode `yarn sequelize db:migrate` para executar as migrations;
+8. Rode `yarn sequelize db:seed:all` para executar as seeds;
 11. Rode `yarn queue` para iniciar as filas;
 10. Rode `yarn dev` para iniciar o servidor.
 
@@ -58,6 +58,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 💻 Projeto
 
 O GymPoint é um aplicativo gerenciador de academia, desenvolvido para avaliação final do bootcamp Rocketseat!
+
+A parte mobile foi feita para `android` ao executar em um emulador `ios` pode conter alguns erros de layout.
 
 ## 🔖 Layout
 
