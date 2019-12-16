@@ -24,7 +24,7 @@ export default function Assistances() {
     async function loadAssistances() {
       const response = await api.get('help-orders/answers');
 
-      const data = response.data.order.map(assistance => ({
+      const data = response.data.map(assistance => ({
         ...assistance,
         createdAt: formatDistance(parseISO(assistance.created_at), new Date(), {
           addSuffix: true,

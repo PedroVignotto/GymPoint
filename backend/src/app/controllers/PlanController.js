@@ -3,12 +3,8 @@ import Plan from '../models/Plan';
 
 class PlanController {
   async index(req, res) {
-    const { page = 1 } = req.query;
-
-    const plans = await Plan.findAndCountAll({
-      limit: 20,
+    const plans = await Plan.findAll({
       order: ['title'],
-      offset: (page - 1) * 20,
       attributes: ['id', 'title', 'duration', 'price'],
     });
 
@@ -16,9 +12,7 @@ class PlanController {
       return res.json({ alert: 'You have no registered plans' });
     }
 
-    const totalPage = Math.ceil(plans.count / 20);
-
-    return res.json({ plans: plans.rows, totalPage });
+    return res.json(plans);
   }
 
   async show(req, res) {

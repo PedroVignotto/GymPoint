@@ -4,20 +4,17 @@ import Student from '../models/Student';
 
 class StudentController {
   async index(req, res) {
-    const { page = 1, q = null } = req.query;
+    const { q = null } = req.query;
 
     const where = q ? { name: { [Op.iLike]: `%${q}%` } } : {};
 
-    const students = await Student.findAndCountAll({
+    const students = await Student.findAll({
       where,
       order: ['name'],
-      limit: 20,
-      offset: (page - 1) * 20,
+      attributes: ['id', 'name', 'email', 'age', 'weight', 'height'],
     });
 
-    const totalPage = Math.ceil(students.count / 20);
-
-    return res.json({ students: students.rows, totalPage });
+    return res.json(students);
   }
 
   async show(req, res) {

@@ -17,7 +17,7 @@ export default function Plans() {
     async function loadPlans() {
       const response = await api.get('plans');
 
-      const data = response.data.plans.map(plan => ({
+      const data = response.data.map(plan => ({
         ...plan,
         priceFormatted: formatPrice(plan.price),
       }));

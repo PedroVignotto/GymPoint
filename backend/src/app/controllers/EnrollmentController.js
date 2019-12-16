@@ -8,13 +8,9 @@ import EnrollmentMail from '../jobs/EnrollmentMail';
 
 class EnrollmentController {
   async index(req, res) {
-    const { page = 1 } = req.query;
-
-    const enrollments = await Enrollment.findAndCountAll({
+    const enrollments = await Enrollment.findAll({
       attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
       order: ['id'],
-      limit: 20,
-      offset: (page - 1) * 20,
       include: [
         {
           model: Student,
@@ -29,9 +25,7 @@ class EnrollmentController {
       ],
     });
 
-    const totalPage = Math.ceil(enrollments.count / 20);
-
-    return res.json({ enrollments: enrollments.rows, totalPage });
+    return res.json(enrollments);
   }
 
   async show(req, res) {
@@ -144,13 +138,6 @@ class EnrollmentController {
 
     if (!plan) {
       return res.status(400).json({ error: 'Plan does not exists' });
-    }
-
-    if (start_date !== enrollmentExists.start_date) {
-      const startDate = startOfHour(parseISO(start_date));
-      if (isBefore(startDate, new Date())) {
-        return res.status(400).json({ error: 'Past dates are not permitted' });
-      }
     }
 
     const price = plan.price * plan.duration;
