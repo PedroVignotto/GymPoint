@@ -54,7 +54,6 @@ export default function Help({ navigation }) {
     loadHelp();
   }, []) //eslint-disable-line
 
-
   return (
     <DefaultLayout>
       <OrderButton onPress={() => navigation.navigate('Question')}>

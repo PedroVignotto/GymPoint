@@ -17,7 +17,6 @@ export const CheckInButton = styled(Button)`
 
 export const CheckInList = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
-  contentContainerStyle: { paddingBottom: 100 },
 })``;
 
 export const Content = styled.View`

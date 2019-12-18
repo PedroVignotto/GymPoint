@@ -13,7 +13,6 @@ export const Loading = styled.ActivityIndicator.attrs({
 
 export const OrderList = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
-  contentContainerStyle: { paddingBottom: 100 },
 })``;
 
 export const Content = styled(RectButton)`
