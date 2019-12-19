@@ -65,11 +65,10 @@ export const List = styled.table`
     }
   }
 
-  tbody td {
+  tbody tr td {
     color: #666;
     line-height: 20px;
     padding: 8px 0 8px 0;
-    border-bottom: 1px solid #eee;
 
     :nth-last-child(-n + 2) {
       text-align: center;

@@ -31,7 +31,6 @@ export const List = styled.table`
     color: #666;
     line-height: 20px;
     padding: 8px 0 8px 0;
-    border-bottom: 1px solid #eee;
 
     :last-child {
       text-align: right;
