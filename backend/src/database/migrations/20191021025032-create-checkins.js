@@ -10,6 +10,7 @@ module.exports = {
       student_id: {
         type: Sequelize.INTEGER,
         references: { model: 'students', key: 'id' },
+        onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         allowNull: false,
       },

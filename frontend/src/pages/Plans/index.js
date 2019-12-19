@@ -13,11 +13,10 @@ import { Top, List, Empty } from './styles';
 
 export default function Plans() {
   const [plans, setPlans] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadPlans() {
-      setLoading(true);
       const response = await api.get('plans');
 
       const data = response.data.map(plan => ({

@@ -13,11 +13,10 @@ import { Top, List, Active, Empty } from './styles';
 
 export default function Enrollments() {
   const [enrollments, setEnrollments] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadEnrollments() {
-      setLoading(true);
       const response = await api.get('enrollments');
 
       const data = response.data.map(enrollment => ({
@@ -76,7 +75,7 @@ export default function Enrollments() {
           <thead>
             <tr>
               <th>Name</th>
-              <th>e-mail</th>
+              <th>Plan</th>
               <th>start</th>
               <th>end</th>
               <th>active</th>
@@ -86,7 +85,7 @@ export default function Enrollments() {
             <tbody key={enrollment.id}>
               <tr>
                 <td>{enrollment.student.name}</td>
-                <td>{enrollment.plan.title}</td>
+                <td>{enrollment.plan && enrollment.plan.title}</td>
                 <td>{enrollment.startDate}</td>
                 <td>{enrollment.endDate}</td>
                 <td>

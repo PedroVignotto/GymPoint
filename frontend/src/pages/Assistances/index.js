@@ -20,11 +20,10 @@ export default function Assistances() {
   const [assistances, setAssistances] = useState([]);
   const [question, setQuestion] = useState([]);
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadAssistances() {
-      setLoading(true);
       const response = await api.get('help-orders/answers');
 
       const data = response.data.map(assistance => ({
