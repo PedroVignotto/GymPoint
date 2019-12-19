@@ -100,3 +100,17 @@ export const Active = styled.span`
   border-radius: 50%;
   margin: 0 auto;
 `;
+
+export const Empty = styled.aside`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 100px auto;
+
+  h6 {
+    font-size: 28px;
+    font-weight: 500;
+    color: #444;
+  }
+`;

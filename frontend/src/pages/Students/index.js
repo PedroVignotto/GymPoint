@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { toast } from 'react-toastify';
 import { MdAdd, MdSearch } from 'react-icons/md';
 import { Link } from 'react-router-dom';
@@ -8,15 +8,14 @@ import api from '~/services/api';
 import Button from '~/components/Button';
 import Loading from '~/components/Loading';
 
-import { Top, List } from './styles';
+import { Top, List, Empty } from './styles';
 
 export default function Students() {
   const [students, setStudents] = useState([]);
   const [search, setSearch] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   async function loadStudents() {
-    setLoading(true);
     const response = await api.get('students', {
       params: { q: search },
     });
@@ -28,6 +27,8 @@ export default function Students() {
   useEffect(() => {
     loadStudents();
   }, []); //eslint-disable-line
+
+  const studentSize = useMemo(() => students.length, [students]);
 
   async function handleDelete(id) {
     try {
@@ -110,6 +111,12 @@ export default function Students() {
             </tbody>
           ))}
         </List>
+      )}
+
+      {!loading && !studentSize && (
+        <Empty>
+          <h6>No students registered</h6>
+        </Empty>
       )}
     </>
   );

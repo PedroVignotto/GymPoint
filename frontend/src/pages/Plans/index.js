@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { MdAdd } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { formatPrice } from '~/util/format';
 import Button from '~/components/Button';
 import Loading from '~/components/Loading';
 
-import { Top, List } from './styles';
+import { Top, List, Empty } from './styles';
 
 export default function Plans() {
   const [plans, setPlans] = useState([]);
@@ -31,6 +31,8 @@ export default function Plans() {
 
     loadPlans();
   }, []);
+
+  const planSize = useMemo(() => plans.length, [plans]);
 
   async function handleDelete(id) {
     try {
@@ -100,6 +102,12 @@ export default function Plans() {
             </tbody>
           ))}
         </List>
+      )}
+
+      {!loading && !planSize && (
+        <Empty>
+          <h6>No plans registered</h6>
+        </Empty>
       )}
     </>
   );

@@ -3,6 +3,8 @@ import Lottie from 'react-lottie';
 
 import animationData from '~/assets/loading.json';
 
+import { Container } from './styles';
+
 export default function Loading() {
   const options = {
     loop: true,
@@ -12,5 +14,9 @@ export default function Loading() {
       preserveAspectRatio: 'xMidYMid slice',
     },
   };
-  return <Lottie options={options} height={64} width={64} />;
+  return (
+    <Container>
+      <Lottie options={options} height={64} width={64} />;
+    </Container>
+  );
 }

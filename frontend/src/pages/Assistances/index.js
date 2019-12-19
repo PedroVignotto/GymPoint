@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { parseISO, formatDistance } from 'date-fns';
 import { toast } from 'react-toastify';
 import { Form, Input } from '@rocketseat/unform';
@@ -9,7 +9,7 @@ import api from '~/services/api';
 import Button from '~/components/Button';
 import Loading from '~/components/Loading';
 
-import { Top, List, Modals } from './styles';
+import { Top, List, Modals, Empty } from './styles';
 
 const schema = Yup.object().shape({
   id: Yup.number().required(),
@@ -40,6 +40,8 @@ export default function Assistances() {
 
     loadAssistances();
   }, []); //eslint-disable-line
+
+  const assistanceSize = useMemo(() => assistances.length, [assistances]);
 
   function handleOpenModal(assistance) {
     setOpen(true);
@@ -93,6 +95,12 @@ export default function Assistances() {
             </tbody>
           ))}
         </List>
+      )}
+
+      {!loading && !assistanceSize && (
+        <Empty>
+          <h6>No assistance requests</h6>
+        </Empty>
       )}
 
       <Modals show={open} onHide={() => setOpen(false)} animation>

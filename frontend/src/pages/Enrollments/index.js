@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { MdAdd, MdDone } from 'react-icons/md';
 import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,7 @@ import history from '~/services/history';
 import Button from '~/components/Button';
 import Loading from '~/components/Loading';
 
-import { Top, List, Active } from './styles';
+import { Top, List, Active, Empty } from './styles';
 
 export default function Enrollments() {
   const [enrollments, setEnrollments] = useState([]);
@@ -32,6 +32,8 @@ export default function Enrollments() {
 
     loadEnrollments();
   }, []);
+
+  const enrollmentSize = useMemo(() => enrollments.length, [enrollments]);
 
   async function handleDelete(id) {
     try {
@@ -112,6 +114,12 @@ export default function Enrollments() {
             </tbody>
           ))}
         </List>
+      )}
+
+      {!loading && !enrollmentSize && (
+        <Empty>
+          <h6>No enrolled student</h6>
+        </Empty>
       )}
     </>
   );
